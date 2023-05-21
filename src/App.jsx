@@ -1,16 +1,16 @@
 
+import Navbar from "./components/Navbar";
+import Body from "./components/Body";
 
-function App() {
 
-
+const App = () => {
   return (
-    <>
-      <div className="header bg-red-500 h-9">
-        HELLO
-      </div>
-
-    </>
+    <div className="app">
+      <Navbar />
+      <Body />
+    </div>
   )
 }
+
 
 export default App
