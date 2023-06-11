@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData.js";
+import { Link } from "react-router-dom";
 const Body = () => {
     const [searchText, setSearchText] = useState();
     const [listOfRestaurants, setListOfRestaurants] = useState(resList);
@@ -72,7 +73,7 @@ const Body = () => {
 
             <div className="res-container flex flex-wrap  justify-between items-start w-[82%] gap-y-20  ">
                 {
-                    filterListOfRestaurants.map((restaurant) => (<RestaurantCard key={restaurant.data.id} resData={restaurant} />))
+                    filterListOfRestaurants?.map((restaurant) => (<Link key={restaurant.data.id} to={"/restaurants/" + restaurant.data.id} ><RestaurantCard resData={restaurant} /></Link>))
                 }
             </div>
         </div>

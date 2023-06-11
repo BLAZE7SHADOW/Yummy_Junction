@@ -6,6 +6,7 @@ import PercentIcon from '@mui/icons-material/Percent';
 import SupportIcon from '@mui/icons-material/Support';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const [btnName, setBtnName] = useState(true);
@@ -49,7 +50,7 @@ const Navbar = () => {
             // let locationData = await fetch(locationData);
             let finalLocData = await locationData.json();
             setLocation(finalLocData);
-            console.log(location);
+            // console.log(location);
 
         }
         catch (err) {
@@ -60,9 +61,9 @@ const Navbar = () => {
     return (
         <div className="navbar flex flex-row justify-around items-center border-4 border-red-600" >
             <div className="left  flex flex-row justify-center items-center gap-3">
-                <div className="logo-container  p-2">
+                <Link to="/"><div className="logo-container  p-2">
                     <img className="logo w-24" src={logoo} alt="" />
-                </div>
+                </div></Link>
                 <div className="workplace flex flex-row gap-2 items-center justify-start font-semibold p-2 m-2">
                     <LocationOnOutlinedIcon onClick={() => setGetLoc(!getLoc)} className="location " />
                     <p> {(location !== null ? (location?.city + ", " + location?.region + ", " + location?.country_name) : " ")}</p>
