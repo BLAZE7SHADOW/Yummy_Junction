@@ -8,7 +8,10 @@ import { HiOutlineCurrencyRupee } from "react-icons/hi";
 
 const ResturantMenu = () => {
     const [menuData, setMenuData] = useState(null);
-    const [offers, setOffers] = useState(null);
+    const [offers, setOffers] = useState({});
+    const [recommended, setRecommended] = useState({});
+    const [showRecommended, setShowRecommended] = useState(false);
+
 
 
     const { resId } = useParams();
@@ -22,6 +25,8 @@ const ResturantMenu = () => {
             // console.log(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers[3]?.info);
             // console.log(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
             setOffers(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
+            // console.log(fData.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards);
+            setRecommended(fData.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards);
             // console.log(offers);
             // console.log(offers.info.header);
             // console.log(menuData);
@@ -85,7 +90,6 @@ const ResturantMenu = () => {
                         <div className="offers w-full flex justify-between gap-2">
                             {
                                 offers?.map((res) => (
-
                                     <div key={res.info.offerIds} className="singleoffer w-[25%] border-[1px] border-black">
                                         <div className="offerpercentage">
                                             <h1>{res.info.header}</h1>
@@ -96,14 +100,52 @@ const ResturantMenu = () => {
                                         </div>
                                     </div>
                                 )
-
                                 )
                             }
                         </div>
                     </div>
+
+                    <div className="items w-full flex flex-col gap-5 bg-orange-400">
+                        <div className="thirdRecommended bg-pink-500 w-full flex flex-col gap-5 cursor-pointer" >
+
+                            <div className="summaryData flex justify-between p-4 pt-6" onClick={() => setShowRecommended(!showRecommended)}>
+                                <span className="summary text-xl font-open font-bold"> Recommended ({recommended.length})</span>
+                                <span>{showRecommended ? "+" : "-"}</span>
+                            </div>
+                            {
+                                showRecommended && recommended.length &&
+                                recommended?.map((res) => (
+
+                                    <div key={res.card.info.id} className=" w-full bg-green-400">
+                                        <div className="d">
+                                            <div className="name"></div>
+                                            <div className="name">{res?.card?.info?.name}</div>
+
+
+
+
+                                            {/* <div className="name">{res?.card?.info?.variantsV2?.variantGroups[0]?.variations[0]?.price}</div> */}
+
+
+                                            {console.log(res.card.info.variantsV2?.variantGroups[0]?.variations[0]?.price)}
+
+
+
+
+                                            <div className="name">{res?.card?.info?.description}</div>
+                                        </div>
+                                    </div>
+                                )
+                                )
+                            }
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
+
+
 
 
 
