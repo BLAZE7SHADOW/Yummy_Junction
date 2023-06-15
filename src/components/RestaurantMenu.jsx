@@ -5,32 +5,41 @@ import Shimmer from "./Shimmer";
 import { AiFillStar } from "react-icons/ai";
 import { MdOutlineTimelapse } from "react-icons/md";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
+// import { initialValue, reducerFunction } from "./reducer/reducer";
 
 const ResturantMenu = () => {
     const [menuData, setMenuData] = useState(null);
-    const [offers, setOffers] = useState({});
-    const [recommended, setRecommended] = useState({});
+    const [offers, setOffers] = useState(null);
+    const [recommended, setRecommended] = useState(null);
     const [showRecommended, setShowRecommended] = useState(false);
 
+    // const [state, dispatch] = useReducer(initialValue, reducerFunction);
 
 
     const { resId } = useParams();
+
+
 
     const fetchMenu = async () => {
         try {
             const data = await fetch(MENU_API + resId);
             const fData = await data.json();
-            // console.log(fData.data.cards[0].card.card.info.name);
+
             setMenuData(fData?.data?.cards[0]?.card?.card?.info);
-            // console.log(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers[3]?.info);
-            // console.log(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
+
+            // dispatch({ type: "MENU_DATA", payload: fData?.data?.cards[0]?.card?.card?.info })
+
+
+
+
             setOffers(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
-            // console.log(fData.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards);
+
             setRecommended(fData.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards);
-            // console.log(offers);
-            // console.log(offers.info.header);
-            // console.log(menuData);
-            // console.log("menuData");
+
+
+
+
+
         }
         catch (err) {
             console.log(err);
@@ -109,11 +118,11 @@ const ResturantMenu = () => {
                         <div className="thirdRecommended bg-pink-500 w-full flex flex-col gap-5 cursor-pointer" >
 
                             <div className="summaryData flex justify-between p-4 pt-6" onClick={() => setShowRecommended(!showRecommended)}>
-                                <span className="summary text-xl font-open font-bold"> Recommended ({recommended.length})</span>
-                                <span>{showRecommended ? "+" : "-"}</span>
+                                <span className="summary text-xl font-open font-bold"> Recommended ({recommended?.length})</span>
+                                <span>{showRecommended ? "-" : "+"}</span>
                             </div>
                             {
-                                showRecommended && recommended.length &&
+                                showRecommended &&
                                 recommended?.map((res) => (
 
                                     <div key={res.card.info.id} className=" w-full bg-green-400">
@@ -127,7 +136,7 @@ const ResturantMenu = () => {
                                             {/* <div className="name">{res?.card?.info?.variantsV2?.variantGroups[0]?.variations[0]?.price}</div> */}
 
 
-                                            {console.log(res.card.info.variantsV2?.variantGroups[0]?.variations[0]?.price)}
+                                            {/* {console.log(res.card.info.variantsV2?.variantGroups[0]?.variations[0]?.price)} */}
 
 
 
