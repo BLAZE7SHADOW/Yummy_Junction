@@ -123,20 +123,22 @@ const ResturantMenu = () => {
                             </div>
                             {
                                 showRecommended &&
-                                recommended?.map((res) => (
+                                (recommended).map((res) => (
 
                                     <div key={res.card.info.id} className=" w-full bg-green-400">
                                         <div className="d">
                                             <div className="name"></div>
                                             <div className="name">{res?.card?.info?.name}</div>
 
-
-
-
                                             {/* <div className="name">{res?.card?.info?.variantsV2?.variantGroups[0]?.variations[0]?.price}</div> */}
 
+                                            {/* {console.log(recommended)}
+                                            {console.log(res)} */}
 
-                                            {/* {console.log(res.card.info.variantsV2?.variantGroups[0]?.variations[0]?.price)} */}
+
+                                            {(res.card.info.variantsV2?.variantGroups)?.map((item) => console.log(item.variations))}
+
+
 
 
 
