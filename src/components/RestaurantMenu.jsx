@@ -10,7 +10,8 @@ import { HiOutlineCurrencyRupee } from "react-icons/hi";
 const ResturantMenu = () => {
     const [menuData, setMenuData] = useState(null);
     const [offers, setOffers] = useState(null);
-    const [recommended, setRecommended] = useState(null);
+    const [recommendedVeg, setRecommendedVeg] = useState(null);
+    const [recommendedNonVeg, setRecommendedNonVeg] = useState(null);
     const [showRecommended, setShowRecommended] = useState(false);
 
     // const [state, dispatch] = useReducer(initialValue, reducerFunction);
@@ -34,7 +35,8 @@ const ResturantMenu = () => {
 
             setOffers(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
 
-            setRecommended(fData.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards);
+            setRecommendedVeg(fData.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards);
+            setRecommendedNonVeg(fData.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards);
 
 
 
@@ -118,28 +120,43 @@ const ResturantMenu = () => {
                         <div className="thirdRecommended bg-pink-500 w-full flex flex-col gap-5 cursor-pointer" >
 
                             <div className="summaryData flex justify-between p-4 pt-6" onClick={() => setShowRecommended(!showRecommended)}>
-                                <span className="summary text-xl font-open font-bold"> Recommended ({recommended?.length})</span>
+                                <span className="summary text-xl font-open font-bold"> Recommended ({(recommendedVeg ? (recommendedVeg?.length) : (recommendedNonVeg?.length))})</span>
                                 <span>{showRecommended ? "-" : "+"}</span>
                             </div>
                             {
                                 showRecommended &&
-                                (recommended).map((res) => (
+                                (recommendedVeg ? (recommendedVeg) : (recommendedNonVeg))?.map((res) => (
 
                                     <div key={res.card.info.id} className=" w-full bg-green-400">
                                         <div className="d">
-                                            <div className="name"></div>
+                                            <div className="name"> {(res?.card?.info?.itemAttribute?.vegClassifier) === "VEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : (res?.card?.info?.itemAttribute?.vegClassifier) === "NONVEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" /> : ""}</div>
                                             <div className="name">{res?.card?.info?.name}</div>
+                                            <div className="pricing flex w-2/3  items-center">
+                                                {
+                                                    (res?.card?.info?.variantsV2?.variantGroups)?.map((item) => ((item.variations)?.map((innerPrice) => innerPrice)))
+                                                        ?
+                                                        (res?.card?.info?.variantsV2?.variantGroups)?.map((item) => ((item.variations)?.map((innerPrice) => ((
+                                                            <div key={innerPrice.id} className="">
+                                                                {
+                                                                    innerPrice.name === 'Half' ?
+                                                                        <span>₹{innerPrice.price}</span> : ""
+                                                                }
+                                                            </div>
+                                                        ))))) :
+                                                        <div className="flex gap-16">
+                                                            <span>₹ {(res?.card?.info?.price / 100)}</span>
+                                                        </div>
+                                                }
+                                            </div>
+                                            {/* {(res?.card?.info?.variantsV2?.pricingModels)?.map((item) => ((
 
-                                            {/* <div className="name">{res?.card?.info?.variantsV2?.variantGroups[0]?.variations[0]?.price}</div> */}
 
-                                            {/* {console.log(recommended)}
-                                            {console.log(res)} */}
+                                                <div key={item.id} className="flex gap-16">
+                                                    <span>p{item.price}</span>
 
+                                                </div>
 
-                                            {(res.card.info.variantsV2?.variantGroups)?.map((item) => console.log(item.variations))}
-
-
-
+                                            )))} */}
 
 
 
