@@ -66,7 +66,11 @@ const ResMenu = () => {
                                                                 </div>
                                                                 <div className="text-[13px] text-slate-500 ">{res?.card?.info?.description}</div>
                                                             </div>
-                                                            <div className="  "><img className="rounded-2xl w-32 h-28 pb-2" src={MENU_IMG_API + res?.card?.info?.imageId} /></div>
+
+
+                                                            {res?.card?.info?.imageId &&
+                                                                <div className="  "><img className="rounded-2xl w-32 h-28 pb-2" src={MENU_IMG_API + res?.card?.info?.imageId} /></div>
+                                                            }
 
 
                                                         </div>
@@ -116,7 +120,9 @@ const ResMenu = () => {
                                                                             </div>
                                                                             <div className="text-[13px] text-slate-500 ">{res?.card?.info?.description}</div>
                                                                         </div>
-                                                                        <div className="  "><img className="rounded-2xl w-32 h-28 pb-2" src={MENU_IMG_API + res?.card?.info?.imageId} /></div>
+                                                                        {res?.card?.info?.imageId &&
+                                                                            <div className="  "><img className="rounded-2xl w-32 h-28 pb-2" src={MENU_IMG_API + res?.card?.info?.imageId} /></div>
+                                                                        }
 
 
                                                                     </div>
