@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData.js";
+// import resList from "../utils/mockData.js";g
 import { Link } from "react-router-dom";
 const Body = () => {
-    const [searchText, setSearchText] = useState();
-    const [listOfRestaurants, setListOfRestaurants] = useState(resList);
-    const [filterListOfRestaurants, setFilterListOfRestaurants] = useState(resList);
+    const [searchText, setSearchText] = useState("");
+    const [listOfRestaurants, setListOfRestaurants] = useState(null);
+    const [filterListOfRestaurants, setFilterListOfRestaurants] = useState(null);
     // let searchTxt = "KFC";
 
 
@@ -15,16 +15,19 @@ const Body = () => {
         try {
             const ress = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.138521&lng=75.84813&page_type=DESKTOP_WEB_LISTING");
             var pinky = await ress.json();
+            setListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
+            setFilterListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
+
+
         }
         catch (err) {
             console.log(err);
         }
-        setListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
-        setFilterListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
+
     }
 
     function filterData(searchText, listOfRestaurants) {
-        const filterData = listOfRestaurants.filter((re) => re.data.name.includes(searchText));
+        const filterData = listOfRestaurants?.filter((re) => re?.data?.name?.toUpperCase()?.includes(searchText?.toUpperCase()));
         return filterData;
     }
 
@@ -36,44 +39,49 @@ const Body = () => {
 
 
     return (
-        <div className="body border-4 border-blue-700 flex flex-col justify-center items-center gap-8">
-            <div className="filters">
-                <div className="Search">
-                    <input
-                        type="text"
-                        placeholder="SEARCH"
-                        className="search-input p-1 m-2"
-                        value={searchText}
-                        onChange={(e) => setSearchText(e.target.value)}
-                    />
-                    <button
-                        className="search-button p-1 m-2 bg-blue-400 rounded"
-                        onClick={() => {
-                            const data = filterData(searchText, listOfRestaurants);
-                            setFilterListOfRestaurants(data);
-                            console.log(data);
-                        }}
+        <div className="parent">
+            <div className="body border-4 border-blue-700 flex flex-col justify-center items-center gap-8">
+                <div className="filters">
+                    <div className="Search">
+                        <input
+                            type="text"
+                            placeholder="SEARCH"
+                            className="search-input p-1 m-2"
+                            value={searchText}
+                            onChange={(e) => setSearchText(e.target.value)}
+                        />
+                        <button
+                            className="search-button p-1 m-2 bg-blue-400 rounded"
+                            onClick={() => {
+
+                                let data = filterData(searchText, listOfRestaurants);
+                                console.log(data);
+                                setFilterListOfRestaurants(data);
+
+                            }}
 
 
 
-                    >SEARCH</button>
+                        >SEARCH</button>
+                    </div>
+                    <div className="filter">
+                        <button className="filter-btn" onClick={() => {
+                            let filteredList = listOfRestaurants?.filter(
+                                (res) => res?.data?.avgRating > 4
+                            );
+                            setFilterListOfRestaurants(filteredList);
+                        }}>
+                            FILTER
+                        </button>
+                    </div>
                 </div>
-                <div className="filter">
-                    <button className="filter-btn" onClick={() => {
-                        let filteredList = listOfRestaurants.filter(
-                            (res) => res.data.avgRating > 4
-                        );
-                        setFilterListOfRestaurants(filteredList);
-                    }}>
-                        FILTER
-                    </button>
-                </div>
-            </div>
 
-            <div className="res-container flex flex-wrap  justify-between items-start w-[82%] gap-y-20  ">
-                {
-                    filterListOfRestaurants?.map((restaurant) => (<Link key={restaurant.data.id} to={"/restaurants/" + restaurant.data.id} ><RestaurantCard resData={restaurant} /></Link>))
-                }
+                <div className="res-container flex flex-wrap  justify-between items-start w-[85%] gap-y-20  ">
+                    {
+                        listOfRestaurants &&
+                        filterListOfRestaurants?.map((restaurant) => (<Link key={restaurant?.data?.id} to={"/restaurants/" + restaurant?.data?.id} ><RestaurantCard resData={restaurant} /></Link>))
+                    }
+                </div>
             </div>
         </div>
     )

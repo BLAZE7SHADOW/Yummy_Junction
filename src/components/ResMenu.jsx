@@ -30,9 +30,9 @@ const ResMenu = () => {
                                         {activeItem === index &&
 
                                             ((it?.card?.card?.itemCards)?.map((res) => (
-                                                <div key={res.card.info.id} className=" w-full p-4 flex flex-col justify-center" >
+                                                <div key={res.card.info.id} className={` w-full py-4 flex flex-col justify-center bg-white  ${res?.card?.info?.imageId ? 'pb-12' : ''}`} >
                                                     <div className="parent flex justify-between items-start ">
-                                                        <div className="data w-[95%]">
+                                                        <div className="data w-[95%] flex flex-col gap-1 ">
 
                                                             <div className=" flex flex-col justify-between ">
                                                                 <div className="py-1"> {(res?.card?.info?.itemAttribute?.vegClassifier) === "VEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : (res?.card?.info?.itemAttribute?.vegClassifier) === "NONVEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" /> : ""}</div>
@@ -57,12 +57,25 @@ const ResMenu = () => {
                                                             </div>
                                                             <div className="text-[13px] text-slate-500 ">{res?.card?.info?.description}</div>
                                                         </div>
-                                                        {res?.card?.info?.imageId &&
 
-                                                            <div className="  "><img className="rounded-2xl w-32 h-28 pb-2" src={MENU_IMG_API + res?.card?.info?.imageId} /></div>
-                                                        }
+
+                                                        <div className="img-btn-parent ">
+                                                            {
+                                                                res?.card?.info?.imageId ?
+
+                                                                    <div className=" relative pt-2">
+                                                                        <img className="rounded-lg w-32 h-[90px] mb-3" src={MENU_IMG_API + res?.card?.info?.imageId} />
+                                                                        <div className="btn flex justify-center"><button className="absolute bottom-0 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600">ADD</button></div>
+
+                                                                    </div> :
+                                                                    <div className="relative w-32 h-[40px] mb-3">
+                                                                        <div className="btn flex justify-center"><button className="absolute top-2 px-8 py-2 pb-3 left-6 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600">ADD</button></div>
+                                                                    </div>
+                                                            }
+                                                        </div>
                                                     </div>
                                                 </div>
+
                                             )
                                             ))
 
@@ -77,9 +90,9 @@ const ResMenu = () => {
                                                     {
                                                         activeItem === index &&
                                                         (ress.itemCards)?.map((res) => (
-                                                            <div key={res.card.info.id} className=" w-full p-4 flex flex-col justify-center gap-4  my-2">
+                                                            <div key={res.card.info.id} className=" w-full py-4 flex flex-col justify-center gap-4  my-2 bg-white">
                                                                 <div className="parent flex justify-between items-start ">
-                                                                    <div className="data w-[95%]">
+                                                                    <div className="data w-[95%] flex flex-col gap-3 ">
                                                                         <div className=" flex flex-col justify-between ">
                                                                             <div className="py-1"> {(res?.card?.info?.itemAttribute?.vegClassifier) === "VEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : (res?.card?.info?.itemAttribute?.vegClassifier) === "NONVEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" /> : ""}</div>
                                                                             <div className="font-semibold">{res?.card?.info?.name}</div>
@@ -103,8 +116,20 @@ const ResMenu = () => {
                                                                         </div>
                                                                         <div className="text-[13px] text-slate-500 ">{res?.card?.info?.description}</div>
                                                                     </div>
-                                                                    {res?.card?.info?.imageId &&
-                                                                        <div className="  "><img className="rounded-2xl w-32 h-28 pb-2" src={MENU_IMG_API + res?.card?.info?.imageId} /></div>
+                                                                    {
+                                                                        res?.card?.info?.imageId ?
+                                                                            <div className="relative pt-2">
+                                                                                <img className="rounded-lg w-32 h-[90px] mb-3" src={MENU_IMG_API + res?.card?.info?.imageId} />
+                                                                                <div className="btn flex justify-center"><button className="absolute bottom-0 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600">ADD</button></div>
+
+                                                                            </div> :
+                                                                            <div className="relative w-32 h-[90px] mb-3">
+                                                                                <div className="btn flex justify-center"><button className="absolute top-2 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600">ADD</button></div>
+                                                                            </div>
+
+
+
+
                                                                     }
                                                                 </div>
                                                             </div>
@@ -123,7 +148,7 @@ const ResMenu = () => {
                         }
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }

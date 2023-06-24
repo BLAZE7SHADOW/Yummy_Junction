@@ -76,7 +76,7 @@ const ResturantMenu = () => {
     return (
         <>
             <div className="main w-full flex flex-col justify-center items-center">
-                <div className="mainBodyRestaurantMenu flex flex-col items-center  w-[50%]">
+                <div className="mainBodyRestaurantMenu flex flex-col items-center  w-[51%]">
                     <div className="firstresNameDetails flex justify-between w-full p-2">
                         <div className="left">
                             <h1 className="name text-lg font-bold font-open">{name}</h1>
@@ -102,15 +102,15 @@ const ResturantMenu = () => {
                                 <HiOutlineCurrencyRupee className="rupeeicon text-2xl font-thin" />  <span className="costmsg font-bold">{costForTwoMessage}</span>
                             </div>
                         </div>
-                        <div className="offers w-full flex justify-between gap-2">
+                        <div className="offers w-full flex justify-between gap-2 bg-red-500">
                             {
                                 offers?.map((res) => (
-                                    <div key={res.info.offerIds} className="singleoffer w-[25%] border-[1px] border-black">
+                                    <div key={res.info.offerIds} className="singleoffer w-[25%] border-[1px] border-black bg-pink-500 text-sm p-2 rounded-md">
                                         <div className="offerpercentage">
                                             <h1>{res.info.header}</h1>
                                         </div>
-                                        <div className="offercode">
-                                            <p>{res.info.couponCode}</p>
+                                        <div className="offercode flex flex-col text-xs">
+                                            <div>{res.info.couponCode}</div>
                                             <p>{res.info.description}</p>
                                         </div>
                                     </div>
