@@ -19,7 +19,6 @@ const Body = () => {
         catch (err) {
             console.log(err);
         }
-        // console.log(pinky.data.cards[2].data.data.cards);
         setListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
         setFilterListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
     }
