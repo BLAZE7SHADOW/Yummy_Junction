@@ -3,3 +3,29 @@
 @tailwind utilities;
 
 
+
+
+.swiper-pagination {
+    display: none !important;
+}
+
+
+
+
+
+
+.swiper-button-prev, .swiper-rtl .swiper-button-next {
+    /* background-color: white !important;
+    border-radius: 50% !important;
+    height: 50px !important;
+    width: 50px !important; */
+    color: black !important;
+    /* color: white !important; */
+}
+.swiper-button-next, .swiper-rtl .swiper-button-prev {
+    /* background-color: white !important;
+    border-radius: 50% !important;
+    height: 50px !important;
+    width: 50px !important; */
+    color: black !important;
+} 
