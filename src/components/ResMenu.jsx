@@ -115,7 +115,7 @@ const ResMenu = () => {
 
                                                                         <div className=" relative pt-2">
                                                                             <img className="rounded-lg w-32 h-[90px] mb-3" src={MENU_IMG_API + res?.card?.info?.imageId} />
-                                                                            <div className="btn flex justify-center"><button className="absolute bottom-0 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600" onClick={() => setMenuModel(true)}>ADD</button></div>
+                                                                            <div className="btn flex justify-center"><button className="absolute bottom-0 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600" onClick={() => { ((res?.card?.info?.variantsV2?.variantGroups) ?  ) }}>ADD</button></div>
 
                                                                         </div> :
                                                                         <div className="relative w-32 h-[40px] mb-3">

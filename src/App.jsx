@@ -6,13 +6,18 @@ import About from "./components/About";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Instamart from "./components/Instamart";
+import Cart from "./components/Cart";
+import { Provider } from "react-redux";
+import store from "./utils/store/store";
 
 const App = () => {
   return (
-    <div className="app">
-      <Navbar />
-      <Outlet />
-    </div>
+    <Provider store={store}>
+      <div className="app">
+        <Navbar />
+        <Outlet />
+      </div>
+    </Provider>
   )
 }
 
@@ -29,6 +34,10 @@ export const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: <About />
+      },
+      {
+        path: "/cart",
+        element: <Cart />
       },
       {
         path: "/instamart",
