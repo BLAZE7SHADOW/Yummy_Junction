@@ -7,10 +7,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper";
+import { addItems } from "../utils/store/slices/cartSlice";
+import { useDispatch } from "react-redux";
 
 const ResMenu = () => {
     const [menuModel, setMenuModel] = useState(false);
     const [activeItem, setActiveItem] = useState(null);
+    const [variantData, setVariantData] = useState(null);
     const fData = useApiData();
     const showAccordians = fData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
     const handleItemClick = (index) => {
@@ -20,6 +23,32 @@ const ResMenu = () => {
             setActiveItem(index); // Expand the clicked item
         }
     };
+
+    const dispatch = useDispatch();
+
+    const addVariantHandler = (info) => {
+
+        if (info?.variants.variantGroups !== undefined && info?.variantsV2.variantGroups !== undefined) {
+            dispatch(addItems(fData));
+            // console.log(info?.variants);
+            // console.log(info?.variantsV2);
+            console.log("1");
+        }
+
+        else if (info?.variants?.variantGroups) {
+            setVariantData(info);
+            setMenuModel(true);
+            // console.log(info?.variants);
+            console.log("2");
+        }
+        else if (info?.variantsV2?.variantGroups) {
+            setVariantData(info);
+            setMenuModel(true);
+            // console.log(info?.variantsV2);
+            console.log("3");
+        }
+    }
+
     return (
         <>
             <div className="items w-full flex flex-col gap-5 mt-4 bg-slate-100">
@@ -28,7 +57,7 @@ const ResMenu = () => {
                         {
                             menuModel &&
 
-                            <MenuOptionModel setMenuModel={setMenuModel} />}
+                            <MenuOptionModel setMenuModel={setMenuModel} variantData={variantData} />}
                         {
                             showAccordians?.map((it, index) => (
                                 (it?.card?.card?.title) &&
@@ -108,18 +137,19 @@ const ResMenu = () => {
                                                                 <div className="text-[13px] text-slate-500 ">{res?.card?.info?.description}</div>
                                                             </div>
 
-
+                                                            {/* {console.log(res?.card?.info?.variantsV2?.variantGroups)} */}
                                                             <div className="img-btn-parent ">
                                                                 {
                                                                     res?.card?.info?.imageId ?
 
                                                                         <div className=" relative pt-2">
                                                                             <img className="rounded-lg w-32 h-[90px] mb-3" src={MENU_IMG_API + res?.card?.info?.imageId} />
-                                                                            <div className="btn flex justify-center"><button className="absolute bottom-0 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600" onClick={() => { ((res?.card?.info?.variantsV2?.variantGroups) ?  ) }}>ADD</button></div>
+                                                                            {/* <div className="btn flex justify-center"><button className="absolute bottom-0 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600" onClick={() => { }}>ADD</button></div> */}
+                                                                            <div className="btn flex justify-center"><button className="absolute bottom-0 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600" onClick={() => addVariantHandler(res?.card?.info)}>ADD</button></div>
 
                                                                         </div> :
                                                                         <div className="relative w-32 h-[40px] mb-3">
-                                                                            <div className="btn flex justify-center"><button className="absolute top-2 px-8 py-2 pb-3 left-6 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600" onClick={() => setMenuModel(true)}>ADD</button></div>
+                                                                            <div className="btn flex justify-center"><button className="absolute top-2 px-8 py-2 pb-3 left-6 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600" onClick={() => addVariantHandler(res?.card?.info)}>ADD</button></div>
                                                                         </div>
                                                                 }
                                                             </div>
@@ -171,11 +201,11 @@ const ResMenu = () => {
                                                                                 res?.card?.info?.imageId ?
                                                                                     <div className="relative pt-2">
                                                                                         <img className="rounded-lg w-32 h-[90px] mb-3" src={MENU_IMG_API + res?.card?.info?.imageId} />
-                                                                                        <div className="btn flex justify-center"><button className="absolute bottom-0 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600" onClick={() => setMenuModel(true)}>ADD</button></div>
+                                                                                        <div className="btn flex justify-center"><button className="absolute bottom-0 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600" onClick={() => addVariantHandler(res?.card?.info)}>ADD</button></div>
 
                                                                                     </div> :
                                                                                     <div className="relative w-32 h-[90px] mb-3">
-                                                                                        <div className="btn flex justify-center"><button className="absolute top-2 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600" onClick={() => setMenuModel(true)}>ADD</button></div>
+                                                                                        <div className="btn flex justify-center"><button className="absolute top-2 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600" onClick={() => addVariantHandler(res?.card?.info)}>ADD</button></div>
                                                                                     </div>
 
 
@@ -206,7 +236,7 @@ const ResMenu = () => {
                         }
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
