@@ -30,23 +30,23 @@ const ResMenu = () => {
 
         if (info?.variants.variantGroups !== undefined && info?.variantsV2.variantGroups !== undefined) {
             dispatch(addItems(fData));
-            // console.log(info?.variants);
+            // console.log(info?.variants); 
             // console.log(info?.variantsV2);
             console.log("1");
         }
 
-        else if (info?.variants?.variantGroups) {
+        else if (info?.variants?.variantGroups || info?.variantsV2?.variantGroups || info?.addons) {
             setVariantData(info);
             setMenuModel(true);
             // console.log(info?.variants);
             console.log("2");
         }
-        else if (info?.variantsV2?.variantGroups) {
-            setVariantData(info);
-            setMenuModel(true);
-            // console.log(info?.variantsV2);
-            console.log("3");
-        }
+        // else if (info?.variantsV2?.variantGroups) {
+        //     setVariantData(info);
+        //     setMenuModel(true);
+        //     // console.log(info?.variantsV2);
+        //     console.log("3");
+        // }
     }
 
     return (
