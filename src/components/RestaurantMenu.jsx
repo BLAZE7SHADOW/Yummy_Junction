@@ -5,6 +5,7 @@ import Shimmer from "./Shimmer";
 import { AiFillStar } from "react-icons/ai";
 import { MdOutlineTimelapse } from "react-icons/md";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
+import { FaLeaf } from "react-icons/fa";
 // import { MENU_IMG_API } from "../utils/constant";
 // import { initialValue, reducerFunction } from "./reducer/reducer";
 import ResMenu from "./ResMenu";
@@ -29,49 +30,21 @@ const ResturantMenu = () => {
         try {
             const data = await fetch(MENU_API + resId);
             const fData = await data.json();
-
             setMenuData(fData?.data?.cards[0]?.card?.card?.info);
-
-            // dispatch({ type: "MENU_DATA", payload: fData?.data?.cards[0]?.card?.card?.info })
-
-
-
-
             setOffers(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
-
-            // setRecommendedVeg(fData.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards);
-            // setRecommendedNonVeg(fData.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards);
-            // setShowAccordians(fData.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
-
-
-
-
         }
         catch (err) {
             console.log(err);
         }
-
     }
-
-    // console.log(menuData);
-
     useEffect(() => {
         fetchMenu();
     }, [resId])
-
-
-
 
     if (menuData === null) return <Shimmer />
 
     const { name, cuisines, costForTwoMessage, areaName, avgRatingString, totalRatingsString } = menuData;
     const { lastMileTravelString, deliveryTime } = menuData.sla;
-
-
-
-
-
-
 
     return (
         <>
@@ -116,6 +89,12 @@ const ResturantMenu = () => {
                                     </div>
                                 )
                                 )
+                            }
+                        </div>
+                        <div className="div pt-6 ">
+                            {
+                                menuData?.veg ? <div className="text-green-800 font-medium text-sm flex gap-3 justify-start items-center"><FaLeaf /><h1>PURE VEG</h1></div> : ''
+
                             }
                         </div>
                     </div>
