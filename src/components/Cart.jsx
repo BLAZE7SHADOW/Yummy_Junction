@@ -1,45 +1,46 @@
-import { AiFillStar } from "react-icons/ai"
+
 import { useSelector } from "react-redux";
 import Shimmer from "./Shimmer";
+import { MENU_IMG_API } from "../utils/constant";
+import { useState } from "react";
 
 const Cart = () => {
-
+    const [totalAmount, setTotalAmount] = useState(0);
     const items = useSelector(store => store?.cart?.items);
 
+    const totalHandler = () => {
 
+    }
 
-    console.log(items);
+    // console.log(items);
     return (
         items.length !== 0 ? (
-            <div className="parent w-full flex justify-center items-start bg-black/10 m-10">
-                <div className="childParent w-3/4 flex flex-col justify-between bg-yellow-200">
-                    <div className="left w-2/3 bg-pink-200 flex flex-col justify-center items-center">
-                        <div className="topSticky w-full">
-                            <div className="firstresNameDetails flex justify-between w-full p-2 bg-red-500">
+            <div className="parent w-full flex justify-center items-center bg-black/10 pb-36 mt-5">
+                <div className="childParent w-3/4 flex  justify-between">
+                    <div className="left w-2/3  flex flex-col justify-center items-center ">
+                        <div className="topSticky w-full sticky top-0">
+                            <div className="firstresNameDetails flex justify-between w-full p-2">
                                 <div className="left">
                                     <h1 className="name text-lg font-bold font-open">{items[0]?.resName}</h1>
                                     <p>{items[0]?.cuisines.join(", ")}</p>
 
                                     <p>{items[0]?.areaName + " " + items[0]?.deliveryDistance}</p>
                                 </div>
-                                <div className="res-img right flex flex-col justify-around p-1 items-center border-[1px] border-gray-300 rounded-xl">
-                                    <div className="rating font-bold text-green-700 flex justify-center items-center gap-[2px]">
-                                        <AiFillStar /><span>4.0</span>
-                                    </div>
-                                    <div className="krating font-open text-[0.65rem] font-semibold text-gray-500">
-                                        <p>10K+ ratings</p>
-                                    </div>
+                                <div className="res-img  w-20 items-center rounded-xl">
+
+                                    <img src={MENU_IMG_API + items[0].image} alt="" className="rounded-xl" />
+
                                 </div>
                             </div>
                         </div>
-                        <div className="middle bg-yellow-300 w-full mt-5 py-4">
+                        <div className="middle w-full ">
                             {
                                 items.map((it) => {
                                     return (
-                                        <div key={it.id} className="flex items-center justify-between w-full bg-red-300 gap-2 my-2 py-5">
+                                        <div key={it.id} className="flex items-center justify-between w-full  gap-2 my-2 ">
                                             <div className="py-1"> {it.veg === "VEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : (it.veg) === "NONVEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" /> : ""}</div>
-                                            <div className="namePrice flex justify-between items-center bg-blue-300 w-full px-4">
-                                                <div className="name">
+                                            <div className="namePrice flex justify-between items-center  w-full px-4">
+                                                <div className="name w-[40%]">
                                                     {it.name}
                                                 </div>
                                                 <div className="btn flex justify-between items-center gap-2 py-1 px-3 border-2 border-slate-500">
@@ -47,8 +48,9 @@ const Cart = () => {
                                                     <div>{it.quantity}</div>
                                                     <button>+</button>
                                                 </div>
-                                                <div className="price">
-                                                    ₹ {it.quantity * it.price}
+                                                <div className="price w-20 ">
+                                                    ₹ {it?.quantity * it?.price}
+                                                    {/* {() => setTotalAmount(totalAmount + (it?.quantity * it?.price))} */}
                                                 </div>
 
                                             </div>
@@ -57,17 +59,55 @@ const Cart = () => {
                                 })
                             }
                         </div>
-                        <div className="bottomSticky">
+                        <div className="mt-2 sticky bottom-0  w-full">
+                            <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold" >
+                                <div className="rate">
+                                    <span className="px-2">{totalAmount}</span>
+                                    <span className="px-2">Total</span>
 
+                                </div>
+                                <div>TOTAL</div>
+                            </button>
                         </div>
                     </div>
-                    <div className="right p-10 w-1/3 bg-green-300 flex flex-col justify-center items-center">
-                        <div className="delivery">
+                    <div className="right p-5 w-1/3  items-center">
 
+                        <div className="payment bg-white  w-full p-4 flex flex-col gap-2">
+                            <div className="bill"> Bill Details</div>
+                            <div className="price-det  px-2 flex flex-col gap-3 my-2">
+                                <div className="item total flex justify-between items-center">
+                                    <div className="head">
+                                        Item Total
+                                    </div>
+                                    <div className="price w-16">
+                                        Rs 95
+                                    </div>
+                                </div>
+                                <div className="delivery flex justify-between items-center">
+                                    <div className="head">
+                                        Delivery Fee | 1.9 kms
+                                    </div>
+                                    <div className="price w-16">
+                                        ₹ 508
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="tax flex justify-between items-center my-2">
+                                <div className="head">
+                                    GST and Restaurant Charges
+                                </div>
+                                <div className="price w-20 px-2">
+                                    ₹ 10
+                                </div>
+                            </div>
                         </div>
-                        <div className="payment">
+                        <div className="mt-2 sticky bottom-0  w-full">
+                            <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold rounded-md" >
+                                <div className="rate">PROCEED TO PAY</div>
+                                <div>₹ 580</div>
+                            </button>
+                        </div>
 
-                        </div>
                     </div>
                 </div>
             </div>

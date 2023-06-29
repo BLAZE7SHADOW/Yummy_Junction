@@ -8,14 +8,14 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
 
 
     // const [variations, setVariations] = useState(null);
-    console.log(variantData)
+    // console.log(variantData)
     const [info, setInfo] = useState(null);
     const [total, setTotal] = useState(variantData?.price / 100);
 
     const setTotalInfo = (variation) => {
         setInfo(variation)
         // console.log(infoo?.price)
-        // setTotal(variation?.price)
+        setTotal(variation?.price)
         // console.log(total);
     }
 
@@ -30,7 +30,8 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
 
 
     const addVariantHandler = () => {
-
+        console.log(total)
+        console.log("ffff")
         if (variantData?.variantsV2?.variantGroups) {
             dispatch(addItems({
                 resName: fData?.data?.cards[0]?.card?.card?.info?.name,
@@ -40,7 +41,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                 image: fData?.data?.cards[0]?.card?.card?.info?.cloudinaryImageId,
                 veg: info?.isVeg === 1 ? "VEG" : "NONVEG",
                 name: variantData?.name,
-                price: total,
+                price: total.toFixed(2),
                 quantity: 1,
                 id: info?.id,
             }));
