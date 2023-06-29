@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import logoo from "../IMAGES/LOGO.png"
+import logoo from "../IMAGES/LOGOO.png"
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import PercentIcon from '@mui/icons-material/Percent';
@@ -7,6 +7,7 @@ import SupportIcon from '@mui/icons-material/Support';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
     const [btnName, setBtnName] = useState(true);
@@ -15,7 +16,7 @@ const Navbar = () => {
     // const [longitude, setLongitude] = useState({});
     const [getLoc, setGetLoc] = useState(false);
 
-
+    const items = useSelector(store => store?.cart?.items)
 
 
 
@@ -63,7 +64,7 @@ const Navbar = () => {
             <div className="navbar flex flex-row justify-between items-center min-w-[1210px]" >
                 <div className="left  flex flex-row justify-center items-center gap-3">
                     <Link to="/"><div className="logo-container  p-1">
-                        <img className="logo w-24" src={logoo} alt="" />
+                        <img className="pt-2 logo w-44" src={logoo} alt="" />
                     </div></Link>
                     <div className="workplace flex flex-row gap-2 items-center justify-start font-semibold p-2 m-2">
                         <LocationOnOutlinedIcon onClick={() => setGetLoc(!getLoc)} className="location " />
@@ -80,7 +81,7 @@ const Navbar = () => {
                         <div className="loginout  flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2  w-24"><PermIdentityIcon />
                             <button className="btnname  cursor-pointer " onClick={() => setBtnName(!btnName)}>{btnName ? "LOGIN" : "LOGOUT"}</button>
                         </div>
-                        <div className="cart-btn flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2"><ShoppingCartOutlinedIcon /><div className="cart">USER</div></div>
+                        <Link to="/cart"><div className="cart-btn flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2"><ShoppingCartOutlinedIcon /><div className="cart">CART{items.length}</div></div></Link>
                     </ul>
                 </div>
 

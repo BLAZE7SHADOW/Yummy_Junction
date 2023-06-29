@@ -17,11 +17,7 @@ const ResturantMenu = () => {
     // const [recommendedNonVeg, setRecommendedNonVeg] = useState(null);
     // const [showRecommended, setShowRecommended] = useState(false);
     // const [showAccordians, setShowAccordians] = useState(null);
-
-
     // const [state, dispatch] = useReducer(initialValue, reducerFunction);
-
-
     const { resId } = useParams();
 
 

@@ -57,7 +57,7 @@ const Body = () => {
                             spaceBetween={55}
                             slidesPerGroup={1}
                             loop={false}
-                            loopFillGroupWithBlank={true}
+
                             pagination={{
                                 clickable: true,
                             }}

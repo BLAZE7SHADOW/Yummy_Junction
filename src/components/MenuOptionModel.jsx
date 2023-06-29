@@ -1,16 +1,92 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addItems } from "../utils/store/slices/cartSlice";
+
+
+const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
+
+
+    // const [variations, setVariations] = useState(null);
+    console.log(variantData)
+    const [info, setInfo] = useState(null);
+    const [total, setTotal] = useState(variantData?.price / 100);
+
+    const setTotalInfo = (variation) => {
+        setInfo(variation)
+        // console.log(infoo?.price)
+        // setTotal(variation?.price)
+        // console.log(total);
+    }
+
+    const totalExtraAddPriceHandler = (condition, initialPrice) => {
+        condition ?
+            setTotal(total + (initialPrice ?? 0))
+            :
+            setTotal(total - (initialPrice ?? 0))
+    }
+
+    const dispatch = useDispatch();
+
+
+    const addVariantHandler = () => {
+
+        if (variantData?.variantsV2?.variantGroups) {
+            dispatch(addItems({
+                resName: fData?.data?.cards[0]?.card?.card?.info?.name,
+                cuisines: fData?.data?.cards[0]?.card?.card?.info?.cuisines,
+                areaName: fData?.data?.cards[0]?.card?.card?.info?.areaName,
+                deliveryDistance: fData?.data?.cards[0]?.card?.card?.info?.sla?.lastMileTravelString,
+                image: fData?.data?.cards[0]?.card?.card?.info?.cloudinaryImageId,
+                veg: info?.isVeg === 1 ? "VEG" : "NONVEG",
+                name: variantData?.name,
+                price: total,
+                quantity: 1,
+                id: info?.id,
+            }));
+        }
+        else if (variantData?.variants?.variantGroups) {
+            dispatch(addItems({
+                resName: fData?.data?.cards[0]?.card?.card?.info?.name,
+                cuisines: fData?.data?.cards[0]?.card?.card?.info?.cuisines,
+                areaName: fData?.data?.cards[0]?.card?.card?.info?.areaName,
+                deliveryDistance: fData?.data?.cards[0]?.card?.card?.info?.sla?.lastMileTravelString,
+                image: fData?.data?.cards[0]?.card?.card?.info?.cloudinaryImageId,
+                veg: info?.isVeg === 1 ? "VEG" : "NONVEG",
+                name: variantData?.name,
+                price: total,
+                quantity: 1,
+                id: info?.id,
+            }));
+        }
+        else if (variantData?.addons) {
+            dispatch(addItems({
+                resName: fData?.data?.cards[0]?.card?.card?.info?.name,
+                cuisines: fData?.data?.cards[0]?.card?.card?.info?.cuisines,
+                areaName: fData?.data?.cards[0]?.card?.card?.info?.areaName,
+                deliveryDistance: fData?.data?.cards[0]?.card?.card?.info?.sla?.lastMileTravelString,
+                image: fData?.data?.cards[0]?.card?.card?.info?.cloudinaryImageId,
+                veg: info?.isVeg === 1 ? "VEG" : "NONVEG",
+                name: variantData?.name,
+                price: total,
+                quantity: 1,
+                id: info?.id,
+            }));
+        }
 
 
 
+    }
 
 
-// eslint-disable-next-line react/prop-types
-const MenuOptionModel = ({ setMenuModel, variantData }) => {
+    useEffect(() => {
+        totalExtraAddPriceHandler();
+    }, [])
 
-    // console.log(variantData);
+
     return (
-        <div className="model-main fixed inset-0 bg-black/50 flex justify-center items-center z-10">
-            <div className="modelcard bg-slate-50 p-8 flex flex-col justify-between min-w-[40%]">
+        <div className="model-main fixed inset-0 bg-black/10 flex justify-center items-center z-10">
+            <div className="modelcard bg-slate-50 p-8 flex flex-col justify-between min-w-[40%] overflow-auto max-h-[90vh] absolute">
                 <div className="heading  flex justify-start items-center gap-2 py-5" >
                     <div className="py-1"> {(variantData?.itemAttribute?.vegClassifier) === "VEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : (variantData?.itemAttribute?.vegClassifier) === "NONVEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" /> : ""}</div>
                     <div className="font-medium text-2xl"> Customize “{variantData?.name}”</div>
@@ -29,13 +105,15 @@ const MenuOptionModel = ({ setMenuModel, variantData }) => {
                                         ((re?.variations)?.map((data) => {
                                             return (
                                                 <div key={data?.id}>
-                                                    <div className="flex  items-center">
+                                                    <div className="flex gap-2 items-center">
                                                         <div className="py-3 pr-2"> {(data?.isVeg) === 1 ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" />}</div>
-                                                        <div className="optionData flex  py-3 gap-4">
-                                                            <input type="radio" value="Male" name="gender" />
+                                                        <label className="optionData flex  py-3 gap-4 bg-yellow-200 w-full" onClick={() => setTotalInfo(
+                                                            data
+                                                        )}>
+                                                            <input type="radio" value={data?.price} name="variation" />
                                                             <div>{data?.name}</div>
                                                             <div>₹{data?.price}</div>
-                                                        </div>
+                                                        </label>
                                                     </div>
                                                 </div>
                                             )
@@ -48,6 +126,7 @@ const MenuOptionModel = ({ setMenuModel, variantData }) => {
                             )
                         })
                     }
+
 
 
                     {
@@ -64,14 +143,16 @@ const MenuOptionModel = ({ setMenuModel, variantData }) => {
                                                 <div key={data?.id}>
                                                     <div className="flex  items-center">
                                                         <div className="py-3 pr-2"> {(data?.isVeg) === 1 ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" />}</div>
-                                                        <div className="optionData flex  py-3 gap-4">
-                                                            <input type="radio" value="Male" name="gender" />
+                                                        <label className="optionData flex  py-3 gap-4 w-full bg-green-300" onClick={() => setTotalInfo(
+                                                            data
+                                                        )}>
+                                                            <input type="radio" value={data?.price} name="choiceForPreparation" />
                                                             <div>{data?.name}</div>
                                                             {
                                                                 (data?.price) ? <div>₹{data?.price / 100}</div> : <div></div>
 
                                                             }
-                                                        </div>
+                                                        </label>
                                                     </div>
                                                 </div>
                                             )
@@ -92,7 +173,7 @@ const MenuOptionModel = ({ setMenuModel, variantData }) => {
                             return (
 
                                 <div key={re.groupId}>
-                                    <div className="font-semibold text-2xl py-2">{re?.name}{re.groupName}</div>
+                                    <div className="font-semibold text-2xl py-2">{re?.name ?? re.groupName}</div>
                                     {
                                         ((re?.choices)?.map((data) => {
                                             return (
@@ -100,14 +181,17 @@ const MenuOptionModel = ({ setMenuModel, variantData }) => {
 
                                                     <div className="flex  items-center">
                                                         <div className="py-3 pr-2"> {(data?.isVeg) === 1 ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" />}</div>
-                                                        <div className="optionData flex  py-3 gap-4">
-                                                            <input type="radio" value="Male" name="gender" />
+                                                        <label className="optionData flex  py-3 gap-4 w-full bg-blue-400" onClick={() => setTotalInfo(
+
+                                                            data
+                                                        )}>
+                                                            <input type="checkbox" value={data?.price} name="addons" onChange={(e) => totalExtraAddPriceHandler(e.target.checked, data?.price / 100)} />
                                                             <div>{data?.name}</div>
                                                             {
                                                                 (data?.price) ? <div>₹{data?.price / 100}</div> : <div></div>
 
                                                             }
-                                                        </div>
+                                                        </label>
                                                     </div>
                                                 </div>
                                             )
@@ -126,11 +210,11 @@ const MenuOptionModel = ({ setMenuModel, variantData }) => {
 
 
                 </div>
-                <div className="button my-2">
-                    <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold">
-                        <div className="rate flex">
-                            <div>Total</div>
-                            <div>Rs 95</div>
+                <div className="button my-2 sticky -bottom-7  w-full">
+                    <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold" onClick={() => addVariantHandler()}>
+                        <div className="rate">
+                            <span className="px-2">Total</span>
+                            <span className="">Rs {total ? total : 0}</span>
                         </div>
                         <div>ADD ITEM</div>
                     </button>
