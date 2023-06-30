@@ -2,17 +2,17 @@
 import { useSelector } from "react-redux";
 import Shimmer from "./Shimmer";
 import { MENU_IMG_API } from "../utils/constant";
-import { useState } from "react";
+import { useRef } from "react";
 
 const Cart = () => {
-    const [totalAmount, setTotalAmount] = useState(0);
+    let totalAmount = useRef(0);
     const items = useSelector(store => store?.cart?.items);
 
-    // const totalHandler = () => {
+    const totalHandler = (price) => {
+        totalAmount.current = Number(totalAmount.current) + Number(price);
+    }
 
-    // }
 
-    // console.log(items);
     return (
         items.length !== 0 ? (
             <div className="parent w-full flex justify-center items-center bg-black/10 pb-36 mt-5">
@@ -37,7 +37,7 @@ const Cart = () => {
                             {
                                 items.map((it) => {
 
-                                    {/* setTotalAmount(prev => prev + (it?.price)) */ }
+                                    totalHandler(it?.price)
 
 
                                     return (
@@ -64,13 +64,11 @@ const Cart = () => {
                             }
                         </div>
                         <div className="mt-2 sticky bottom-0  w-full">
-                            <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold" >
-                                <div className="rate">
-                                    <span className="px-2">{totalAmount}</span>
-                                    <span className="px-2">Total</span>
-
+                            <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold px-12" >
+                                <div className="rate flex justify-start items-center w-2/4">
+                                    TOTAL
                                 </div>
-                                <div>TOTAL</div>
+                                <div className="flex justify-end items-center w-2/4"> ₹ {totalAmount.current}</div>
                             </button>
                         </div>
                     </div>
@@ -84,7 +82,7 @@ const Cart = () => {
                                         Item Total
                                     </div>
                                     <div className="price w-16">
-                                        Rs {totalAmount}
+                                        ₹ {totalAmount.current}
                                     </div>
                                 </div>
                                 <div className="delivery flex justify-between items-center">
@@ -92,7 +90,7 @@ const Cart = () => {
                                         Delivery Fee | 1.9 kms
                                     </div>
                                     <div className="price w-16">
-                                        ₹ 508
+                                        ₹ 40
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +106,7 @@ const Cart = () => {
                         <div className="mt-2 sticky bottom-0  w-full">
                             <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold rounded-md" >
                                 <div className="rate">PROCEED TO PAY</div>
-                                <div>₹ 580</div>
+                                <div className="w-24 p-1 ">₹ {totalAmount.current + 50}</div>
                             </button>
                         </div>
 

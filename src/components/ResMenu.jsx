@@ -28,7 +28,7 @@ const ResMenu = () => {
     const dispatch = useDispatch();
 
     const addVariantHandler = (info) => {
-        console.log("hhh")
+        // console.log("hhh")
         if ((!(info?.variants.variantGroups) && !(info?.variantsV2.variantGroups) && !(info?.addons))) {
             dispatch(addItems({
                 resName: fData?.data?.cards[0]?.card?.card?.info?.name,
@@ -47,7 +47,7 @@ const ResMenu = () => {
         else if ((info?.variants?.variantGroups ?? info?.variantsV2?.variantGroups) ?? info?.addons) {
             setVariantData(info);
             setMenuModel(true);
-            console.log("2")
+            // console.log("2")
         }
 
     }
@@ -113,6 +113,8 @@ const ResMenu = () => {
                                                                     <div className="font-semibold">{res?.card?.info?.name}</div>
                                                                     <div className="pricing flex w-2/3  items-center">
                                                                         {/* ?.map((item) => ((item.variations)?.map((innerPrice) => innerPrice))) */}
+
+
                                                                         {
                                                                             (res?.card?.info?.variantsV2?.variantGroups)
                                                                                 ?
@@ -128,6 +130,22 @@ const ResMenu = () => {
                                                                                     <span>₹ {(res?.card?.info?.price / 100)}</span>
                                                                                 </div>
                                                                         }
+
+                                                                        {/* {
+                                                                            (res?.card?.info?.variants?.variantGroups)
+                                                                                ?
+                                                                                (res?.card?.info?.variants?.variantGroups)?.map((item) => ((item.variations)?.map((innerPrice) => ((
+                                                                                    <div key={innerPrice.id} className="">
+                                                                                        {
+                                                                                            innerPrice.name === 'Half' ?
+                                                                                                <span>₹{innerPrice.price}</span> : ""
+                                                                                        }
+                                                                                    </div>
+                                                                                ))))) :
+                                                                                <div className="flex gap-16">
+                                                                                    <span>₹ {(res?.card?.info?.price / 100)}</span>
+                                                                                </div>
+                                                                        } */}
                                                                         {
                                                                             menuModel &&
 

@@ -8,26 +8,27 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
 
 
     const [info, setInfo] = useState(null);
-    const [total, setTotal] = useState(variantData?.price / 100);
+    const [total, setTotal] = useState(variantData?.price / 100 ?? 0);
 
     const setTotalInfo = (variation) => {
         setInfo(variation)
         setTotal(variation?.price)
+        console.log(total)
+        //error is here see and solve
     }
 
     const totalExtraAddPriceHandler = (condition, initialPrice) => {
+
         condition ?
-            setTotal(total + (initialPrice ?? 0))
+            <h1>{setTotal(total + (initialPrice ?? 0))} {console.log(total)}</h1>
             :
-            setTotal(total - (initialPrice ?? 0))
+            <h1>{setTotal(total - (initialPrice ?? 0))} {console.log(total)}</h1>
     }
 
     const dispatch = useDispatch();
 
 
     const addVariantHandler = () => {
-        console.log(total)
-        console.log("ffff")
         if (variantData?.variantsV2?.variantGroups) {
             dispatch(addItems({
                 resName: fData?.data?.cards[0]?.card?.card?.info?.name,
@@ -71,7 +72,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
             }));
         }
 
-
+        setMenuModel(false);
 
     }
 
@@ -179,12 +180,12 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                                                     <div className="flex  items-center">
                                                         <div className="py-3 pr-2"> {(data?.isVeg) === 1 ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" />}</div>
                                                         <label className="optionData flex  py-3 gap-4 w-full " onClick={() => setTotalInfo(
-
                                                             data
                                                         )}>
                                                             <input type="checkbox" value={data?.price} name="addons" onChange={(e) => totalExtraAddPriceHandler(e.target.checked, data?.price / 100)} />
-                                                            <div>{data?.name}</div>
+                                                            <div>{data?.name}</div><div>jjj</div>
                                                             {
+
                                                                 (data?.price) ? <div>₹{data?.price / 100}</div> : <div></div>
 
                                                             }
@@ -211,7 +212,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                     <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold" onClick={() => addVariantHandler()}>
                         <div className="rate">
                             <span className="px-2">Total</span>
-                            <span className="">Rs {total ? total : 0}</span>
+                            <span className="">Rs {total ?? 0}</span>
                         </div>
                         <div>ADD ITEM</div>
                     </button>
