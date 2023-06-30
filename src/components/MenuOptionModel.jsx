@@ -7,16 +7,12 @@ import { addItems } from "../utils/store/slices/cartSlice";
 const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
 
 
-    // const [variations, setVariations] = useState(null);
-    // console.log(variantData)
     const [info, setInfo] = useState(null);
     const [total, setTotal] = useState(variantData?.price / 100);
 
     const setTotalInfo = (variation) => {
         setInfo(variation)
-        // console.log(infoo?.price)
         setTotal(variation?.price)
-        // console.log(total);
     }
 
     const totalExtraAddPriceHandler = (condition, initialPrice) => {
@@ -108,7 +104,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                                                 <div key={data?.id}>
                                                     <div className="flex gap-2 items-center">
                                                         <div className="py-3 pr-2"> {(data?.isVeg) === 1 ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" />}</div>
-                                                        <label className="optionData flex  py-3 gap-4 bg-yellow-200 w-full" onClick={() => setTotalInfo(
+                                                        <label className="optionData flex  py-3 gap-4 w-full" onClick={() => setTotalInfo(
                                                             data
                                                         )}>
                                                             <input type="radio" value={data?.price} name="variation" />
@@ -144,7 +140,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                                                 <div key={data?.id}>
                                                     <div className="flex  items-center">
                                                         <div className="py-3 pr-2"> {(data?.isVeg) === 1 ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" />}</div>
-                                                        <label className="optionData flex  py-3 gap-4 w-full bg-green-300" onClick={() => setTotalInfo(
+                                                        <label className="optionData flex  py-3 gap-4 w-full " onClick={() => setTotalInfo(
                                                             data
                                                         )}>
                                                             <input type="radio" value={data?.price} name="choiceForPreparation" />
@@ -182,7 +178,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
 
                                                     <div className="flex  items-center">
                                                         <div className="py-3 pr-2"> {(data?.isVeg) === 1 ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" />}</div>
-                                                        <label className="optionData flex  py-3 gap-4 w-full bg-blue-400" onClick={() => setTotalInfo(
+                                                        <label className="optionData flex  py-3 gap-4 w-full " onClick={() => setTotalInfo(
 
                                                             data
                                                         )}>

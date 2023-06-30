@@ -8,9 +8,9 @@ const Cart = () => {
     const [totalAmount, setTotalAmount] = useState(0);
     const items = useSelector(store => store?.cart?.items);
 
-    const totalHandler = () => {
+    // const totalHandler = () => {
 
-    }
+    // }
 
     // console.log(items);
     return (
@@ -36,6 +36,10 @@ const Cart = () => {
                         <div className="middle w-full ">
                             {
                                 items.map((it) => {
+
+                                    {/* setTotalAmount(prev => prev + (it?.price)) */ }
+
+
                                     return (
                                         <div key={it.id} className="flex items-center justify-between w-full  gap-2 my-2 ">
                                             <div className="py-1"> {it.veg === "VEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : (it.veg) === "NONVEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" /> : ""}</div>
@@ -80,7 +84,7 @@ const Cart = () => {
                                         Item Total
                                     </div>
                                     <div className="price w-16">
-                                        Rs 95
+                                        Rs {totalAmount}
                                     </div>
                                 </div>
                                 <div className="delivery flex justify-between items-center">
