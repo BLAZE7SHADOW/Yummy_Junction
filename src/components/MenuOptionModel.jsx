@@ -8,17 +8,25 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
 
 
     const [info, setInfo] = useState(null);
-    const [total, setTotal] = useState(variantData?.price / 100 ?? 0);
+    const [total, setTotal] = useState((variantData?.price) ? (variantData?.price / 100) : 0);
+    // const [total, setTotal] = useState((variantData?.price) ? (variantData?.price / 100) : 0);
 
-    const setTotalInfo = (variation) => {
+    const setTotalInfo = (variation, amount) => {
         setInfo(variation)
-        setTotal(variation?.price)
         console.log(total)
-        //error is here see and solve
+        console.log(amount)
+        setTotal(amount)
     }
+    // const setTotalInfo = (condition, variation, amount) => {
+    //     console.log(condition)
+    //     setInfo(variation)
+    //     console.log(total)
+    //     console.log(amount)
+    //     setTotal(amount)
+    // }
 
     const totalExtraAddPriceHandler = (condition, initialPrice) => {
-
+        console.log(condition)
         condition ?
             <h1>{setTotal(total + (initialPrice ?? 0))} {console.log(total)}</h1>
             :
@@ -106,7 +114,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                                                     <div className="flex gap-2 items-center">
                                                         <div className="py-3 pr-2"> {(data?.isVeg) === 1 ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" />}</div>
                                                         <label className="optionData flex  py-3 gap-4 w-full" onClick={() => setTotalInfo(
-                                                            data
+                                                            data, data?.price ? (data?.price) : 0
                                                         )}>
                                                             <input type="radio" value={data?.price} name="variation" />
                                                             <div>{data?.name}</div>
@@ -142,7 +150,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                                                     <div className="flex  items-center">
                                                         <div className="py-3 pr-2"> {(data?.isVeg) === 1 ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" />}</div>
                                                         <label className="optionData flex  py-3 gap-4 w-full " onClick={() => setTotalInfo(
-                                                            data
+                                                            data, data?.price ? (data?.price / 100) : 0
                                                         )}>
                                                             <input type="radio" value={data?.price} name="choiceForPreparation" />
                                                             <div>{data?.name}</div>
@@ -164,6 +172,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                         })
                     }
 
+
                     {
                         (variantData?.addons) &&
 
@@ -180,7 +189,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                                                     <div className="flex  items-center">
                                                         <div className="py-3 pr-2"> {(data?.isVeg) === 1 ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" />}</div>
                                                         <label className="optionData flex  py-3 gap-4 w-full " onClick={() => setTotalInfo(
-                                                            data
+                                                            data, (data?.price) ? (data?.price / 100) : 0
                                                         )}>
                                                             <input type="checkbox" value={data?.price} name="addons" onChange={(e) => totalExtraAddPriceHandler(e.target.checked, data?.price / 100)} />
                                                             <div>{data?.name}</div><div>jjj</div>
