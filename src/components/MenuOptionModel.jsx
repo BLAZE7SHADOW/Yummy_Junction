@@ -6,31 +6,23 @@ import { addItems } from "../utils/store/slices/cartSlice";
 
 const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
 
-
+    const [radioPrice, setRadioPrice] = useState(0);
     const [info, setInfo] = useState(null);
     const [total, setTotal] = useState((variantData?.price) ? (variantData?.price / 100) : 0);
-    // const [total, setTotal] = useState((variantData?.price) ? (variantData?.price / 100) : 0);
+
 
     const setTotalInfo = (variation, amount) => {
         setInfo(variation)
-        console.log(total)
+        setRadioPrice(amount)
+        console.log("hgggh")
         console.log(amount)
-        setTotal(amount)
     }
-    // const setTotalInfo = (condition, variation, amount) => {
-    //     console.log(condition)
-    //     setInfo(variation)
-    //     console.log(total)
-    //     console.log(amount)
-    //     setTotal(amount)
-    // }
 
     const totalExtraAddPriceHandler = (condition, initialPrice) => {
-        console.log(condition)
         condition ?
-            <h1>{setTotal(total + (initialPrice ?? 0))} {console.log(total)}</h1>
+            <h1>{setTotal(total + (initialPrice ?? 0))} </h1>
             :
-            <h1>{setTotal(total - (initialPrice ?? 0))} {console.log(total)}</h1>
+            <h1>{setTotal(total - (initialPrice ?? 0))} </h1>
     }
 
     const dispatch = useDispatch();
@@ -46,7 +38,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                 image: fData?.data?.cards[0]?.card?.card?.info?.cloudinaryImageId,
                 veg: info?.isVeg === 1 ? "VEG" : "NONVEG",
                 name: variantData?.name,
-                price: total.toFixed(2),
+                price: (total + radioPrice).toFixed(2),
                 quantity: 1,
                 id: info?.id,
             }));
@@ -60,7 +52,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                 image: fData?.data?.cards[0]?.card?.card?.info?.cloudinaryImageId,
                 veg: info?.isVeg === 1 ? "VEG" : "NONVEG",
                 name: variantData?.name,
-                price: total,
+                price: total + radioPrice,
                 quantity: 1,
                 id: info?.id,
             }));
@@ -74,7 +66,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                 image: fData?.data?.cards[0]?.card?.card?.info?.cloudinaryImageId,
                 veg: info?.isVeg === 1 ? "VEG" : "NONVEG",
                 name: variantData?.name,
-                price: total,
+                price: total + radioPrice,
                 quantity: 1,
                 id: info?.id,
             }));
@@ -188,9 +180,10 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
 
                                                     <div className="flex  items-center">
                                                         <div className="py-3 pr-2"> {(data?.isVeg) === 1 ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" />}</div>
-                                                        <label className="optionData flex  py-3 gap-4 w-full " onClick={() => setTotalInfo(
+                                                        <label className="optionData flex  py-3 gap-4 w-full " >
+                                                            {/* onClick={() => setTotalInfo(
                                                             data, (data?.price) ? (data?.price / 100) : 0
-                                                        )}>
+                                                        )} */}
                                                             <input type="checkbox" value={data?.price} name="addons" onChange={(e) => totalExtraAddPriceHandler(e.target.checked, data?.price / 100)} />
                                                             <div>{data?.name}</div><div>jjj</div>
                                                             {
@@ -221,7 +214,11 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                     <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold" onClick={() => addVariantHandler()}>
                         <div className="rate">
                             <span className="px-2">Total</span>
-                            <span className="">Rs {total ?? 0}</span>
+                            {console.log("gggg")}
+                            {console.log(total)}
+                            {console.log("hhhh")}
+                            {console.log(radioPrice)}
+                            <span className="">RsS {total ? (total + radioPrice) : radioPrice}</span>
                         </div>
                         <div>ADD ITEM</div>
                     </button>

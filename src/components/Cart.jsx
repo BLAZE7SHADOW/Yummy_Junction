@@ -2,7 +2,56 @@
 import { useSelector } from "react-redux";
 import Shimmer from "./Shimmer";
 import { MENU_IMG_API } from "../utils/constant";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import { rzp_Id } from "../utils/constant";
+
+
+
+
+
+const handlePaymentSuccess = (payment) => {
+    console.log("Payment Successful:", payment);
+    // Perform necessary actions after successful payment        
+};
+
+const handlePaymentError = (error) => {
+    console.log("Payment Error:", error);
+    // Handle payment errors
+};
+
+const makePayment = async (price) => {
+
+    const options = {
+        key: rzp_Id,
+        amount: price * 100,
+        currency: "INR",
+        name: "YUMMY JUNCTION",
+        description: "Thank you for your test purchase",
+        image: '',
+        handler: handlePaymentSuccess,
+        prefill: {
+            name: '',
+            email: '',
+            contact: ''
+        },
+        notes: {
+            address: ''
+        },
+        theme: {
+            color: "#0e5db3"
+        }
+    };
+    // window.RazorpayCheckout.open(options);
+    const razorpayInstance = new window.Razorpay(options);
+    razorpayInstance.on('payment.failed', handlePaymentError);
+    razorpayInstance.open();
+};
+
+
+
+
+
+
 
 const Cart = () => {
     let totalAmount = useRef(0);
@@ -12,12 +61,22 @@ const Cart = () => {
         totalAmount.current = Number(totalAmount.current) + Number(price);
     }
 
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://checkout.razorpay.com/v1/checkout.js";
+        script.async = true;
+        document.body.appendChild(script);
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
 
     return (
         items.length !== 0 ? (
             <div className="parent w-full flex justify-center items-center bg-black/10 pb-36 mt-5">
-                <div className="childParent w-3/4 flex  justify-between">
-                    <div className="left w-2/3  flex flex-col justify-center items-center ">
+                <div className="childParent w-3/4 flex  justify-between mt-4">
+                    <div className="left w-2/3  flex flex-col justify-center items-center">
                         <div className="topSticky w-full sticky top-0">
                             <div className="firstresNameDetails flex justify-between w-full p-2">
                                 <div className="left">
@@ -63,7 +122,7 @@ const Cart = () => {
                                 })
                             }
                         </div>
-                        <div className="mt-2 sticky bottom-0  w-full">
+                        <div className="mt-1 sticky bottom-0  w-full">
                             <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold px-12" >
                                 <div className="rate flex justify-start items-center w-2/4">
                                     TOTAL
@@ -103,8 +162,8 @@ const Cart = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-2 sticky bottom-0  w-full">
-                            <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold rounded-md" >
+                        <div className="mt-2 sticky bottom-0  w-full" >
+                            <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold rounded-md" onClick={() => makePayment(totalAmount.current + 50)}>
                                 <div className="rate">PROCEED TO PAY</div>
                                 <div className="w-24 p-1 ">₹ {totalAmount.current + 50}</div>
                             </button>
