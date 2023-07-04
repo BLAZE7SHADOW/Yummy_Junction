@@ -9,6 +9,7 @@ import Instamart from "./components/Instamart";
 import Cart from "./components/Cart";
 import { Provider } from "react-redux";
 import store from "./utils/store/store";
+import Login from "./pages/login";
 
 const App = () => {
   return (
@@ -38,6 +39,10 @@ export const appRouter = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />
+      },
+      {
+        path: "/login",
+        element: <Login />
       },
       {
         path: "/instamart",

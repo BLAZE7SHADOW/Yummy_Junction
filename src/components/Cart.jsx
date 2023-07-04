@@ -103,20 +103,20 @@ const Cart = () => {
                             {
                                 items.map((it) => {
 
-                                    totalHandler(it?.price.toFixed(2), it?.quantity)
+                                    totalHandler(it?.price, it?.quantity)
 
 
                                     return (
-                                        <div key={it.id} className="flex items-center justify-between w-full  gap-2 my-2 ">
+                                        <div key={it?.id} className="flex items-center justify-between w-full  gap-2 my-2 ">
                                             <div className="py-1"> {it.veg === "VEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : (it.veg) === "NONVEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" /> : ""}</div>
                                             <div className="namePrice flex justify-between items-center  w-full px-4">
                                                 <div className="name w-[40%]">
-                                                    {it.name}
+                                                    {it?.name}
                                                 </div>
                                                 <div className="btn flex justify-between items-center gap-3 py-1 px-3 border-2 border-slate-500">
-                                                    <button onClick={() => it?.quantity >= 2 ? dispatch(decrQuantity(it.id)) : dispatch(removeItem(it.id))}>-</button>
+                                                    <button onClick={() => it?.quantity >= 2 ? dispatch(decrQuantity(it?.id)) : dispatch(removeItem(it?.id))}>-</button>
                                                     <div className="w-2 flex justify-center items-center">{it.quantity}</div>
-                                                    <button onClick={() => dispatch(incrQuantity(it.id))}>+</button>
+                                                    <button onClick={() => dispatch(incrQuantity(it?.id))}>+</button>
                                                 </div>
                                                 <div className="price w-20 ">
                                                     ₹ {(it?.quantity * it?.price).toFixed(2)}
@@ -133,7 +133,7 @@ const Cart = () => {
                                 <div className="rate flex justify-start items-center w-2/4">
                                     TOTAL
                                 </div>
-                                <div className="flex justify-end items-center w-2/4"> ₹ {totalAmount.current.toFixed(2)}</div>
+                                <div className="flex justify-end items-center w-2/4"> ₹ {totalAmount?.current?.toFixed(2)}</div>
                             </button>
                         </div>
                     </div>
@@ -147,7 +147,7 @@ const Cart = () => {
                                         Item Total
                                     </div>
                                     <div className="price w-20">
-                                        ₹ {totalAmount.current.toFixed(2)}
+                                        ₹ {totalAmount?.current?.toFixed(2)}
                                     </div>
                                 </div>
                                 <div className="delivery flex justify-between items-center">
@@ -171,7 +171,7 @@ const Cart = () => {
                         <div className="mt-2 sticky bottom-0  w-full" >
                             <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold rounded-md" onClick={() => makePayment(totalAmount.current + 50)}>
                                 <div className="rate">PROCEED TO PAY</div>
-                                <div className="w-28 p-1 ">₹ {(totalAmount.current + 50).toFixed(2)}</div>
+                                <div className="w-28 p-1 ">₹ {(totalAmount?.current + 50)?.toFixed(2)}</div>
                             </button>
                         </div>
 

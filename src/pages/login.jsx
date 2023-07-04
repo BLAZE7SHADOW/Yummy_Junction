@@ -1,32 +1,23 @@
 import { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useGlobalLogin } from "../../context/login-context";
+import { useSelector } from "react-redux";
 import './login.css';
-
+import { useDispatch } from "react-redux";
+import loginHandler from "../utils/store/services/loginServices";
 
 const Login = () => {
 
-    const { loginAction, input, setInput, userToken } = useGlobalLogin();
-
+    const loginToken = useSelector(store => store?.login?.loginToken);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (userToken) {
+        if (loginToken) {
             navigate(-1)
         }
     })
 
-    const dummyData = {
-        username: 'kminchelle',
-        password: '0lelplR'
-    }
 
-    const setInputUserName = (event) => {
-        setInput({ username: event.target.value });
-    }
-    const setInputPassword = (event) => {
-        setInput({ password: event.target.value });
-    }
 
     return (
         <>
@@ -36,14 +27,7 @@ const Login = () => {
                         <div className="login">
                             <h1>Login</h1>
                         </div>
-                        <form action="">
-                            <input type="text" placeholder="Name"
-                                autoCorrect="off" value={input.username} onChange={setInputUserName}
-                            />
-                            <input type="password" placeholder="Password" value={input.password} onChange={setInputPassword} />
-                            <input type="submit" value="Login" onClick={loginAction} />
-                            <input type="button" value="Click Here To Apply Dummy Data" onClick={() => setInput(dummyData)} />
-                        </form>
+                        <button onClick={() => dispatch(loginHandler())}>LOGIN AS GUEST</button>
                         <div className="remember-forget">
                             <div className="remember-me">
                                 <input type="checkbox" name="" id="" /><span>Remember Me</span>

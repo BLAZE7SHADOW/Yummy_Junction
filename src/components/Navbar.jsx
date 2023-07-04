@@ -6,27 +6,32 @@ import PercentIcon from '@mui/icons-material/Percent';
 import SupportIcon from '@mui/icons-material/Support';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Badge from '@mui/material/Badge';
+import { logoutHandler, updateLoginDetails } from "../utils/store/slices/loginSlice";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
-    const [btnName, setBtnName] = useState(true);
     const [location, setLocation] = useState(null);
-    // const [latitude, setLatitude] = useState({});
-    // const [longitude, setLongitude] = useState({});
     const [getLoc, setGetLoc] = useState(false);
 
     const items = useSelector(store => store?.cart?.items)
+    const loginToken = useSelector(store => store?.login?.loginToken)
+    const navigate = useNavigate();
 
-
-
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
         getLocation();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [getLoc])
+
+    useEffect(() => {
+        const userDetails = JSON.parse(localStorage.getItem('user'))
+        dispatch(updateLoginDetails(userDetails));
+    }, [])
 
     const getLocation = async () => {
         const END_POINT = `https://ipapi.co/json`;
@@ -60,7 +65,15 @@ const Navbar = () => {
                         <div className="offer-btn flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2"><PercentIcon /><div className="offers">Offers</div></div>
                         <div className="help-btn flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2"><SupportIcon /><div className="help">Help</div></div>
                         <div className="loginout  flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2  w-24"><PermIdentityIcon />
-                            <button className="btnname  cursor-pointer " onClick={() => setBtnName(!btnName)}>{btnName ? "LOGIN" : "LOGOUT"}</button>
+
+                            {
+                                loginToken ?
+                                    <button className="btnname  cursor-pointer " onClick={() => dispatch(logoutHandler())}> LOGOUT </button>
+                                    :
+                                    <button className="btnname  cursor-pointer " onClick={() => navigate('/login')}> LOGIN </button>
+                            }
+
+
                         </div>
                         <Link to="/cart"><div className="cart-btn flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2">
                             <Badge badgeContent={items.length} color="primary">
