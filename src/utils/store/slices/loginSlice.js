@@ -16,7 +16,7 @@ export const loginSlice = createSlice({
         },
         updateLoginDetails: (state, action) => {
             state.userDetails = action.payload;
-            state.loginToken = action.payload.token;
+            state.loginToken = action.payload?.token;
         },
 
     },
@@ -26,7 +26,7 @@ export const loginSlice = createSlice({
         },
         [loginHandler.fulfilled]: (state, action) => {
             state.userDetails = action.payload;
-            state.loginToken = action.payload.token;
+            state.loginToken = action.payload?.token;
             state.productStatus = "success";
         },
         [loginHandler.rejected]: (state) => {
