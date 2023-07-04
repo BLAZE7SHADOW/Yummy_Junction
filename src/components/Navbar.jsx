@@ -8,6 +8,7 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Badge from '@mui/material/Badge';
 
 const Navbar = () => {
     const [btnName, setBtnName] = useState(true);
@@ -28,31 +29,11 @@ const Navbar = () => {
     }, [getLoc])
 
     const getLocation = async () => {
-
-        // const success = (position) => {
-        //     console.log(position);
-        //     setLatitude(position.coords.latitude);
-        //     setLongitude(position.coords.longitude);
-        // }
-        // const error = (position) => {
-        //     console.log(position);
-        // }
-        // navigator.geolocation.getCurrentPosition(success, error);
-
-
         const END_POINT = `https://ipapi.co/json`;
-
-
-
-
-
         try {
             let locationData = await fetch(END_POINT);
-            // let locationData = await fetch(locationData);
             let finalLocData = await locationData.json();
             setLocation(finalLocData);
-            // console.log(location);
-
         }
         catch (err) {
             console.log(err);
@@ -81,7 +62,12 @@ const Navbar = () => {
                         <div className="loginout  flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2  w-24"><PermIdentityIcon />
                             <button className="btnname  cursor-pointer " onClick={() => setBtnName(!btnName)}>{btnName ? "LOGIN" : "LOGOUT"}</button>
                         </div>
-                        <Link to="/cart"><div className="cart-btn flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2"><ShoppingCartOutlinedIcon /><div className="cart">CART{items.length}</div></div></Link>
+                        <Link to="/cart"><div className="cart-btn flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2">
+                            <Badge badgeContent={items.length} color="primary">
+                                <ShoppingCartOutlinedIcon />
+
+                            </Badge><div className="cart">CART</div>
+                        </div></Link>
                     </ul>
                 </div>
 

@@ -103,7 +103,7 @@ const Cart = () => {
                             {
                                 items.map((it) => {
 
-                                    totalHandler(it?.price, it?.quantity)
+                                    totalHandler(it?.price.toFixed(2), it?.quantity)
 
 
                                     return (
@@ -113,13 +113,13 @@ const Cart = () => {
                                                 <div className="name w-[40%]">
                                                     {it.name}
                                                 </div>
-                                                <div className="btn flex justify-between items-center gap-2 py-1 px-3 border-2 border-slate-500">
+                                                <div className="btn flex justify-between items-center gap-3 py-1 px-3 border-2 border-slate-500">
                                                     <button onClick={() => it?.quantity >= 2 ? dispatch(decrQuantity(it.id)) : dispatch(removeItem(it.id))}>-</button>
-                                                    <div>{it.quantity}</div>
+                                                    <div className="w-2 flex justify-center items-center">{it.quantity}</div>
                                                     <button onClick={() => dispatch(incrQuantity(it.id))}>+</button>
                                                 </div>
                                                 <div className="price w-20 ">
-                                                    ₹ {it?.quantity * it?.price}
+                                                    ₹ {(it?.quantity * it?.price).toFixed(2)}
                                                 </div>
 
                                             </div>
@@ -133,7 +133,7 @@ const Cart = () => {
                                 <div className="rate flex justify-start items-center w-2/4">
                                     TOTAL
                                 </div>
-                                <div className="flex justify-end items-center w-2/4"> ₹ {totalAmount.current}</div>
+                                <div className="flex justify-end items-center w-2/4"> ₹ {totalAmount.current.toFixed(2)}</div>
                             </button>
                         </div>
                     </div>
@@ -146,15 +146,15 @@ const Cart = () => {
                                     <div className="head">
                                         Item Total
                                     </div>
-                                    <div className="price w-16">
-                                        ₹ {totalAmount.current}
+                                    <div className="price w-20">
+                                        ₹ {totalAmount.current.toFixed(2)}
                                     </div>
                                 </div>
                                 <div className="delivery flex justify-between items-center">
                                     <div className="head">
                                         Delivery Fee | 1.9 kms
                                     </div>
-                                    <div className="price w-16">
+                                    <div className="price w-20">
                                         ₹ 40
                                     </div>
                                 </div>
@@ -163,7 +163,7 @@ const Cart = () => {
                                 <div className="head">
                                     GST and Restaurant Charges
                                 </div>
-                                <div className="price w-20 px-2">
+                                <div className="price w-24 px-2">
                                     ₹ 10
                                 </div>
                             </div>
@@ -171,7 +171,7 @@ const Cart = () => {
                         <div className="mt-2 sticky bottom-0  w-full" >
                             <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold rounded-md" onClick={() => makePayment(totalAmount.current + 50)}>
                                 <div className="rate">PROCEED TO PAY</div>
-                                <div className="w-24 p-1 ">₹ {totalAmount.current + 50}</div>
+                                <div className="w-28 p-1 ">₹ {(totalAmount.current + 50).toFixed(2)}</div>
                             </button>
                         </div>
 

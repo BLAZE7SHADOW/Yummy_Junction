@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+.login-body {
+    width: 100vw;
+    height: 90vh;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.login-body .img {
+    height: 100%;
+    width: 100%;
+    background-image: url('../../Image/login-body.jpg');
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 30px 30px;
+    margin: 120px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.login {
+    width: 400px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    gap: 30px;
+    margin: 20px 0px;
+}
+
+form input:not([type='submit']) {
+    height: 50px;
+    padding-left: 10px;
+    background: transparent;
+    color: white;
+    border: none;
+    border-bottom: 2px solid white;
+    outline: none;
+    font-size: 1.1rem;
+}
+
+form input::placeholder {
+    color: white;
+    font-size: 1rem;
+}
+
+form input[type='submit'],
+form input[type='button'] {
+    height: 40px;
+    padding-left: 10px;
+    background: white;
+    color: black;
+    font-size: 1.25rem;
+    border: 2px solid white;
+    cursor: pointer;
+}
+
+.remember-forget {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.remember-me {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.forget-password a {
+    color: rgb(123, 123, 194);
+    text-decoration: none;
+}

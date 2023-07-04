@@ -8,7 +8,7 @@ import { Pagination, Navigation } from "swiper";
 import { Link } from "react-router-dom";
 import { MAIN_API, MENU_IMG_API } from "../utils/constant";
 import Shimmer from "./Shimmer";
-
+import { BiSearchAlt } from "react-icons/bi"
 
 
 const Body = () => {
@@ -16,11 +16,6 @@ const Body = () => {
     const [listOfRestaurants, setListOfRestaurants] = useState(null);
     const [carousel, setCarousel] = useState(null);
     const [filterListOfRestaurants, setFilterListOfRestaurants] = useState(null);
-    // const [swiperRef, setSwiperRef] = useState(null);
-    // let searchTxt = "KFC";
-
-
-
 
     const getData = async () => {
         try {
@@ -29,6 +24,7 @@ const Body = () => {
             setListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
             setCarousel(pinky?.data?.cards[0]?.data?.data?.cards);
             setFilterListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
+            console.log(listOfRestaurants)
         }
         catch (err) {
             console.log(err);
@@ -88,40 +84,63 @@ const Body = () => {
                         </div>
                     </div>
                 }
-                <div className="body  flex flex-col justify-center items-center gap-8">
-                    <div className="filters">
-                        <div className="Search">
+                <div className="body w-full flex flex-col justify-center items-center gap-8">
+                    <div className="filters w-[80%] flex justify-center items-center mt-4 gap-20 pr-5 p-2 ">
+                        <div className="Search w-[30%]  flex justify-center hover:bg-black/10">
                             <input
                                 type="text"
                                 placeholder="SEARCH"
-                                className="search-input p-1 m-2"
+                                className="search-input p-1 m-2 bg-black/10"
                                 value={searchText}
                                 onChange={(e) => setSearchText(e.target.value)}
                             />
                             <button
-                                className="search-button p-1 m-2 bg-blue-400 rounded"
+                                className="search-button flex justify-center items-center gap-2 p-2 px-3 m-2 bg-green-400 rounded text-sm text-gray-800 font-semibold"
                                 onClick={() => {
 
                                     let data = filterData(searchText, listOfRestaurants);
-                                    console.log(data);
                                     setFilterListOfRestaurants(data);
 
                                 }}
 
 
 
-                            >SEARCH</button>
+                            ><BiSearchAlt className="text-xl" />SEARCH</button>
                         </div>
-                        <div className="filter">
-                            <button className="filter-btn" onClick={() => {
-                                let filteredList = listOfRestaurants?.filter(
-                                    (res) => res?.data?.avgRating > 4
-                                );
-                                setFilterListOfRestaurants(filteredList);
+                        <div className="filter w-[60%] flex justify-between items-center gap-4">
+                            <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10" onClick={() => {
+                                let sortedList = [...listOfRestaurants];
+                                sortedList.sort((a, b) => a.data.deliveryTime - b.data.deliveryTime);
+                                setFilterListOfRestaurants(sortedList);
+
                             }}>
-                                FILTER
+                                Delivery Time
                             </button>
+                            <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10" onClick={() => {
+                                let sortedList = [...listOfRestaurants];
+                                sortedList.sort((a, b) => b.data.avgRating - a.data.avgRating);
+                                setFilterListOfRestaurants(sortedList);
+
+                            }}>
+                                Rating
+                            </button>
+                            <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10" onClick={() => {
+                                let sortedList = [...listOfRestaurants];
+                                sortedList.sort((a, b) => a.data.costForTwo - b.data.costForTwo);
+                                setFilterListOfRestaurants(sortedList);
+                            }}>
+                                Cost : Low TO High
+                            </button>
+                            <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10" onClick={() => {
+                                let sortedList = [...listOfRestaurants];
+                                sortedList.sort((a, b) => b.data.costForTwo - a.data.costForTwo);
+                                setFilterListOfRestaurants(sortedList);
+                            }}>
+                                Cost : High To Low
+                            </button>
+
                         </div>
+
                     </div>
 
                     <div className="res-container flex flex-wrap  justify-between items-start w-[81%] gap-y-20  ">
