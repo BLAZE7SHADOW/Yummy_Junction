@@ -4,6 +4,8 @@ import Shimmer from "./Shimmer";
 import { MENU_IMG_API } from "../utils/constant";
 import { useRef, useEffect } from "react";
 import { rzp_Id } from "../utils/constant";
+import { incrQuantity, decrQuantity, removeItem } from "../utils/store/slices/cartSlice";
+import { useDispatch } from "react-redux";
 
 
 
@@ -54,12 +56,17 @@ const makePayment = async (price) => {
 
 
 const Cart = () => {
+    const dispatch = useDispatch();
     let totalAmount = useRef(0);
     const items = useSelector(store => store?.cart?.items);
 
-    const totalHandler = (price) => {
-        totalAmount.current = Number(totalAmount.current) + Number(price);
+    totalAmount.current = 0;
+    const totalHandler = (price, quantity) => {
+        totalAmount.current = Number(totalAmount.current) + (price * quantity);
     }
+
+
+
 
     useEffect(() => {
         const script = document.createElement("script");
@@ -96,7 +103,7 @@ const Cart = () => {
                             {
                                 items.map((it) => {
 
-                                    totalHandler(it?.price)
+                                    totalHandler(it?.price, it?.quantity)
 
 
                                     return (
@@ -107,13 +114,12 @@ const Cart = () => {
                                                     {it.name}
                                                 </div>
                                                 <div className="btn flex justify-between items-center gap-2 py-1 px-3 border-2 border-slate-500">
-                                                    <button>-</button>
+                                                    <button onClick={() => it?.quantity >= 2 ? dispatch(decrQuantity(it.id)) : dispatch(removeItem(it.id))}>-</button>
                                                     <div>{it.quantity}</div>
-                                                    <button>+</button>
+                                                    <button onClick={() => dispatch(incrQuantity(it.id))}>+</button>
                                                 </div>
                                                 <div className="price w-20 ">
                                                     ₹ {it?.quantity * it?.price}
-                                                    {/* {() => setTotalAmount(totalAmount + (it?.quantity * it?.price))} */}
                                                 </div>
 
                                             </div>

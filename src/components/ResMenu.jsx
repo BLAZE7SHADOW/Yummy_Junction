@@ -10,13 +10,20 @@ import { Pagination, Navigation } from "swiper";
 import { addItems } from "../utils/store/slices/cartSlice";
 import { useDispatch } from "react-redux";
 
-const ResMenu = () => {
 
+const ResMenu = () => {
+    const [quantity] = useState(1);
     const [menuModel, setMenuModel] = useState(false);
     const [activeItem, setActiveItem] = useState(null);
     const [variantData, setVariantData] = useState(null);
     const fData = useApiData();
     const showAccordians = fData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+    const dispatch = useDispatch();
+
+
+
+
+
     const handleItemClick = (index) => {
         if (activeItem === index) {
             setActiveItem(null); // Collapse the clicked item if it's already active
@@ -24,9 +31,6 @@ const ResMenu = () => {
             setActiveItem(index); // Expand the clicked item
         }
     };
-
-    const dispatch = useDispatch();
-
     const addVariantHandler = (info) => {
         // console.log("hhh")
         if ((!(info?.variants.variantGroups) && !(info?.variantsV2.variantGroups) && !(info?.addons))) {
@@ -39,7 +43,7 @@ const ResMenu = () => {
                 deliveryDistance: fData?.data?.cards[0]?.card?.card?.info?.sla?.lastMileTravelString,
                 image: fData?.data?.cards[0]?.card?.card?.info?.cloudinaryImageId,
                 veg: (info?.itemAttribute?.vegClassifier ?? info?.itemAttribute?.vegClassifier) ?? "",
-                quantity: 1,
+                quantity: quantity,
                 id: info?.id,
             }));
         }
@@ -47,7 +51,6 @@ const ResMenu = () => {
         else if ((info?.variants?.variantGroups ?? info?.variantsV2?.variantGroups) ?? info?.addons) {
             setVariantData(info);
             setMenuModel(true);
-            // console.log("2")
         }
 
     }
@@ -92,8 +95,6 @@ const ResMenu = () => {
                                                                                 <img src={MENU_IMG_API + rees?.dish?.info?.imageId} alt="" className="hover:scale-110 transition-all duration-[0.6s] ease-in-out z-[99999]" />
                                                                             </div>
                                                                         </SwiperSlide>
-
-
                                                                     </div>
                                                                 )
                                                             })
@@ -112,9 +113,6 @@ const ResMenu = () => {
                                                                     <div className="py-1"> {(res?.card?.info?.itemAttribute?.vegClassifier) === "VEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : (res?.card?.info?.itemAttribute?.vegClassifier) === "NONVEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" /> : ""}</div>
                                                                     <div className="font-semibold">{res?.card?.info?.name}</div>
                                                                     <div className="pricing flex w-2/3  items-center">
-                                                                        {/* ?.map((item) => ((item.variations)?.map((innerPrice) => innerPrice))) */}
-
-
                                                                         {
                                                                             (res?.card?.info?.variantsV2?.variantGroups)
                                                                                 ?
@@ -130,35 +128,15 @@ const ResMenu = () => {
                                                                                     <span>₹ {(res?.card?.info?.price / 100)}</span>
                                                                                 </div>
                                                                         }
-
-                                                                        {/* {
-                                                                            (res?.card?.info?.variants?.variantGroups)
-                                                                                ?
-                                                                                (res?.card?.info?.variants?.variantGroups)?.map((item) => ((item.variations)?.map((innerPrice) => ((
-                                                                                    <div key={innerPrice.id} className="">
-                                                                                        {
-                                                                                            innerPrice.name === 'Half' ?
-                                                                                                <span>₹{innerPrice.price}</span> : ""
-                                                                                        }
-                                                                                    </div>
-                                                                                ))))) :
-                                                                                <div className="flex gap-16">
-                                                                                    <span>₹ {(res?.card?.info?.price / 100)}</span>
-                                                                                </div>
-                                                                        } */}
                                                                         {
                                                                             menuModel &&
 
                                                                             <MenuOptionModel setMenuModel={setMenuModel} variantData={variantData} fData={fData} />
                                                                         }
-
-
                                                                     </div>
                                                                 </div>
                                                                 <div className="text-[13px] text-slate-500 ">{res?.card?.info?.description}</div>
                                                             </div>
-
-                                                            {/* {console.log(res?.card?.info?.variantsV2?.variantGroups)} */}
                                                             <div className="img-btn-parent ">
                                                                 {
                                                                     res?.card?.info?.imageId ?
@@ -175,10 +153,8 @@ const ResMenu = () => {
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 )
                                                 ))
-
                                             }
                                             {(it?.card?.card?.categories) &&
                                                 (it?.card?.card?.categories)?.map((ress, Categoryindex) => {
@@ -186,7 +162,6 @@ const ResMenu = () => {
                                                         <div key={Categoryindex}>
                                                             <div className=" flex justify-between bg-white my-2" onClick={() => handleItemClick(index)}>
                                                                 <span className="summary text-base font-open font-semibold flex flex-col py-2 " > {ress?.title} ({(ress?.itemCards?.length) ? (ress?.itemCards?.length) : ""}) </span>
-                                                                {/* <span className="pr-5 font-bolder">{(activeItem === index) ? "-" : "+"}</span> */}
                                                             </div>
                                                             {
                                                                 activeItem === index &&
@@ -228,23 +203,12 @@ const ResMenu = () => {
                                                                                     <div className="relative w-32 h-[90px] mb-3">
                                                                                         <div className="btn flex justify-center"><button className="absolute top-2 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600" onClick={() => addVariantHandler(res?.card?.info)}>ADD</button></div>
                                                                                     </div>
-
-
-
-
                                                                             }
                                                                         </div>
                                                                     </div>
                                                                 )
                                                                 )
-
-
-
-
-
                                                             }
-
-
                                                         </div>
                                                     )
                                                 }
@@ -257,7 +221,7 @@ const ResMenu = () => {
                         }
                     </div>
                 </div>
-            </div >
+            </div>
         </>
     )
 }
