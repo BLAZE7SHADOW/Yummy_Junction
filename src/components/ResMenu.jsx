@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useApiData from "../utils/useApiData";
 import { MENU_IMG_API } from "../utils/constant";
 import MenuOptionModel from "./MenuOptionModel";
@@ -12,16 +12,17 @@ import { useDispatch } from "react-redux";
 
 
 const ResMenu = () => {
+    const [web, setWeb] = useState(true);
     const [quantity] = useState(1);
     const [menuModel, setMenuModel] = useState(false);
     const [activeItem, setActiveItem] = useState(null);
     const [variantData, setVariantData] = useState(null);
     const fData = useApiData();
-    const showAccordians = fData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+    const showAccordians = web ? fData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards : fData?.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
     const dispatch = useDispatch();
 
-
-
+    console.log(fData);
+    console.log(showAccordians);
 
 
     const handleItemClick = (index) => {
@@ -54,6 +55,13 @@ const ResMenu = () => {
         }
 
     }
+    useEffect(() => {
+        let deviceWidth = window.innerWidth;
+        if (deviceWidth < 660) {
+            setWeb(false);
+        }
+    }, [])
+
 
     return (
         <>

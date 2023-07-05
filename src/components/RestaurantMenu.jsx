@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constant";
+import { MENU_API, MOBI_MENU_API } from "../utils/constant";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { AiFillStar } from "react-icons/ai";
@@ -11,6 +11,7 @@ import { FaLeaf } from "react-icons/fa";
 import ResMenu from "./ResMenu";
 
 const ResturantMenu = () => {
+    const [web, setWeb] = useState(true);
     const [menuData, setMenuData] = useState(null);
     const [offers, setOffers] = useState(null);
     // const [recommendedVeg, setRecommendedVeg] = useState(null);
@@ -24,7 +25,8 @@ const ResturantMenu = () => {
 
     const fetchMenu = async () => {
         try {
-            const data = await fetch(MENU_API + resId);
+
+            const data = await fetch(web ? MENU_API + resId : MOBI_MENU_API + resId);
             const fData = await data.json();
             setMenuData(fData?.data?.cards[0]?.card?.card?.info);
             setOffers(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
@@ -33,9 +35,21 @@ const ResturantMenu = () => {
             console.log(err);
         }
     }
+
     useEffect(() => {
         fetchMenu();
     }, [resId])
+
+    useEffect(() => {
+        let deviceWidth = window.innerWidth;
+        if (deviceWidth < 660) {
+            setWeb(false);
+            fetchMenu();
+        }
+    }, [])
+
+
+
 
     if (menuData === null) return <Shimmer />
 

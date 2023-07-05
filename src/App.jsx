@@ -17,7 +17,7 @@ const App = () => {
       <div className="app">
         <Navbar />
         <Outlet />
-        <BottomTaskBar className="" />
+
       </div>
     </Provider>
   )

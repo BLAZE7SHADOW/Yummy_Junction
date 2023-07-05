@@ -15,7 +15,7 @@ const BottomTaskBar = () => {
 
     const dispatch = useDispatch();
     return (
-        <div className="w-full shadow-lg bg-white fixed bottom-0">
+        <div className="w-full shadow-lg bg-white fixed bottom-0 md:hidden">
 
             <ul className="items flex w-full justify-around items-center gap-16 m-2 ">
                 <div className="loginout  flex  gap-[5px] justify-center items-center cursor-pointer p-2  w-24"><PermIdentityIcon />
