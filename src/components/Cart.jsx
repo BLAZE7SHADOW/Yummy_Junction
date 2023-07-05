@@ -1,9 +1,7 @@
 
 import { useSelector } from "react-redux";
 import Shimmer from "./Shimmer";
-import { MENU_IMG_API } from "../utils/constant";
 import { useRef, useEffect } from "react";
-import { rzp_Id } from "../utils/constant";
 import { incrQuantity, decrQuantity, removeItem } from "../utils/store/slices/cartSlice";
 import { useDispatch } from "react-redux";
 
@@ -24,7 +22,7 @@ const handlePaymentError = (error) => {
 const makePayment = async (price) => {
 
     const options = {
-        key: rzp_Id,
+        key: import.meta.env.VITE_rzp_Id,
         amount: price * 100,
         currency: "INR",
         name: "YUMMY JUNCTION",
@@ -94,7 +92,7 @@ const Cart = () => {
                                 </div>
                                 <div className="res-img  w-20 items-center rounded-xl">
 
-                                    <img src={MENU_IMG_API + items[0].image} alt="" className="rounded-xl" />
+                                    <img src={import.meta.env.VITE_rzp_Id_MENU_IMG_API + items[0].image} alt="" className="rounded-xl" />
 
                                 </div>
                             </div>

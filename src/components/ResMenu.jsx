@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import useApiData from "../utils/useApiData";
-import { MENU_IMG_API } from "../utils/constant";
 import MenuOptionModel from "./MenuOptionModel";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -95,7 +94,7 @@ const ResMenu = () => {
                                                                     <div key={index} className="parentCarousel">
                                                                         <SwiperSlide key={rees?.bannerId} className="py-10">
                                                                             <div className="">
-                                                                                <img src={MENU_IMG_API + rees?.dish?.info?.imageId} alt="" className="hover:scale-110 transition-all duration-[0.6s] ease-in-out z-[99999]" />
+                                                                                <img src={import.meta.env.VITE_MENU_IMG_API + rees?.dish?.info?.imageId} alt="" className="hover:scale-110 transition-all duration-[0.6s] ease-in-out z-[99999]" />
                                                                             </div>
                                                                         </SwiperSlide>
                                                                     </div>
@@ -145,7 +144,7 @@ const ResMenu = () => {
                                                                     res?.card?.info?.imageId ?
 
                                                                         <div className=" relative pt-2">
-                                                                            <img className="rounded-lg w-32 h-[90px] mb-3" src={MENU_IMG_API + res?.card?.info?.imageId} />
+                                                                            <img className="rounded-lg w-32 h-[90px] mb-3" src={import.meta.env.VITE_MENU_IMG_API + res?.card?.info?.imageId} />
                                                                             <div className="btn flex justify-center"><button className="absolute bottom-0 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600" onClick={() => addVariantHandler(res?.card?.info)}>ADD</button></div>
 
                                                                         </div> :
@@ -163,7 +162,7 @@ const ResMenu = () => {
                                                 (it?.card?.card?.categories)?.map((ress, Categoryindex) => {
                                                     return (
                                                         <div key={Categoryindex}>
-                                                            <div className=" flex justify-between bg-white my-2" onClick={() => handleItemClick(index)}>
+                                                            <div className=" flex justify-between bg-white my-2 px-4" onClick={() => handleItemClick(index)}>
                                                                 <span className="summary text-base font-open font-semibold flex flex-col py-2 " > {ress?.title} ({(ress?.itemCards?.length) ? (ress?.itemCards?.length) : ""}) </span>
                                                             </div>
                                                             {
@@ -199,7 +198,7 @@ const ResMenu = () => {
                                                                             {
                                                                                 res?.card?.info?.imageId ?
                                                                                     <div className="relative pt-2">
-                                                                                        <img className="rounded-lg w-32 h-[90px] mb-3" src={MENU_IMG_API + res?.card?.info?.imageId} />
+                                                                                        <img className="rounded-lg w-32 h-[90px] mb-3" src={import.meta.env.VITE_MENU_IMG_API + res?.card?.info?.imageId} />
                                                                                         <div className="btn flex justify-center"><button className="absolute bottom-0 px-8 py-2 pb-3 rounded-md bg-slate-50 border-[1px] border-gray-300 text-xs font-open font-bold text-green-600" onClick={() => addVariantHandler(res?.card?.info)}>ADD</button></div>
 
                                                                                     </div> :

@@ -6,7 +6,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper";
 import { Link } from "react-router-dom";
-import { MAIN_API, MENU_IMG_API } from "../utils/constant";
 import Shimmer from "./Shimmer";
 import { BiSearchAlt } from "react-icons/bi"
 
@@ -19,7 +18,7 @@ const Body = () => {
 
     const getData = async () => {
         try {
-            const ress = await fetch(MAIN_API);
+            const ress = await fetch(import.meta.env.VITE_MAIN_API);
             const pinky = await ress.json();
             setListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
             setCarousel(pinky?.data?.cards[0]?.data?.data?.cards);
@@ -27,6 +26,7 @@ const Body = () => {
 
         }
         catch (err) {
+
             console.log(err);
         }
     }
@@ -78,7 +78,7 @@ const Body = () => {
                                         return (
                                             <SwiperSlide key={cc?.data?.bannerId} className="py-10">
                                                 <div className="">
-                                                    <img src={MENU_IMG_API + cc.data.creativeId} alt="" className="hover:scale-110 transition-all duration-[0.6s] ease-in-out z-[99999]" />
+                                                    <img src={import.meta.env.VITE_MENU_IMG_API + cc.data.creativeId} alt="" className="hover:scale-110 transition-all duration-[0.6s] ease-in-out z-[99999]" />
                                                 </div>
                                             </SwiperSlide>
                                         )

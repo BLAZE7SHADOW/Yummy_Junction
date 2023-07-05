@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { MENU_API, MOBI_MENU_API } from "../utils/constant";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { AiFillStar } from "react-icons/ai";
@@ -26,7 +25,7 @@ const ResturantMenu = () => {
     const fetchMenu = async () => {
         try {
 
-            const data = await fetch(web ? MENU_API + resId : MOBI_MENU_API + resId);
+            const data = await fetch(web ? import.meta.env.VITE_MENU_API + resId : import.meta.env.VITE_MOBI_MENU_API + resId);
             const fData = await data.json();
             setMenuData(fData?.data?.cards[0]?.card?.card?.info);
             setOffers(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers);

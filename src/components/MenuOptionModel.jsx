@@ -14,9 +14,12 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
     const setTotalInfo = (variation, amount) => {
         setInfo(variation)
         setRadioPrice(amount)
+        console.log("amount" + amount);
     }
 
     const totalExtraAddPriceHandler = (condition, initialPrice) => {
+        if (isNaN(initialPrice))
+            return
         condition ?
             <h1>{setTotal(total + (initialPrice ?? 0))} </h1>
             :
@@ -83,6 +86,10 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
     return (
         <div className="model-main fixed inset-0 bg-black/10 flex justify-center items-center z-10">
             <div className="modelcard bg-slate-50 p-8 flex flex-col justify-between min-w-[40%] overflow-auto max-h-[90vh] absolute max-[800px]:min-w-0">
+                <div className="closebtn sticky -top-2 z-10 flex justify-end">
+                    <button className=" bg-black/20 rounded-full p-2" onClick={() => setMenuModel(false)}>close</button>
+                </div>
+
                 <div className="heading  flex justify-start items-center gap-2 py-5" >
                     <div className="py-1"> {(variantData?.itemAttribute?.vegClassifier) === "VEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : (variantData?.itemAttribute?.vegClassifier) === "NONVEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" /> : ""}</div>
                     <div className="font-medium text-2xl"> Customize “{variantData?.name}”</div>
@@ -178,12 +185,10 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
 
                                                     <div className="flex  items-center">
                                                         <div className="py-3 pr-2"> {(data?.isVeg) === 1 ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" />}</div>
-                                                        <label className="optionData flex  py-3 gap-4 w-full " >
-                                                            {/* onClick={() => setTotalInfo(
-                                                            data, (data?.price) ? (data?.price / 100) : 0
-                                                        )} */}
+                                                        <label className="optionData flex  py-3 gap-4 w-full justify-between " >
+
                                                             <input type="checkbox" value={data?.price} name="addons" onChange={(e) => totalExtraAddPriceHandler(e.target.checked, data?.price / 100)} />
-                                                            <div>{data?.name}</div><div>jjj</div>
+                                                            <div>{data?.name}</div>
                                                             {
 
                                                                 (data?.price) ? <div>₹{data?.price / 100}</div> : <div></div>
@@ -212,16 +217,17 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                     <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold" onClick={() => addVariantHandler()}>
                         <div className="rate">
                             <span className="px-2">Total</span>
-                            {console.log("gggg")}
+                            {/* {console.log("gggg")}
                             {console.log(total)}
                             {console.log("hhhh")}
-                            {console.log(radioPrice)}
-                            <span className="">Rs {total ? (total + radioPrice) : radioPrice}</span>
+                            {console.log(radioPrice)} */}
+                            <span className="">Rs {total ? (total + radioPrice)?.toFixed(2) : radioPrice}</span>
                         </div>
                         <div>ADD ITEM</div>
                     </button>
                 </div>
-                <button onClick={() => setMenuModel(false)}>close</button>
+
+
             </div>
         </div>
     )
