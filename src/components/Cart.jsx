@@ -179,7 +179,7 @@ const Cart = () => {
         )
             :
             (
-                <div className="shimmer">
+                <div className="empty">
                     <EmptyCart />
                 </div>
             )
