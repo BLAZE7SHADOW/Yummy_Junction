@@ -82,7 +82,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
 
     return (
         <div className="model-main fixed inset-0 bg-black/10 flex justify-center items-center z-10">
-            <div className="modelcard bg-slate-50 p-8 flex flex-col justify-between min-w-[40%] overflow-auto max-h-[90vh] absolute">
+            <div className="modelcard bg-slate-50 p-8 flex flex-col justify-between min-w-[40%] overflow-auto max-h-[90vh] absolute max-[800px]:min-w-0">
                 <div className="heading  flex justify-start items-center gap-2 py-5" >
                     <div className="py-1"> {(variantData?.itemAttribute?.vegClassifier) === "VEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : (variantData?.itemAttribute?.vegClassifier) === "NONVEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" /> : ""}</div>
                     <div className="font-medium text-2xl"> Customize “{variantData?.name}”</div>
