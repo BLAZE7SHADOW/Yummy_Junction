@@ -113,7 +113,7 @@ const Body = () => {
 
                             ><BiSearchAlt className="text-xl" />SEARCH</button>
                         </div>
-                        <div className="filter w-[60%] flex justify-between items-center gap-4 bg-green-400 max-[760px]:w-full">
+                        <div className="filter w-[60%] flex justify-between items-center gap-4  max-[760px]:w-full max-[760px]:bg-green-400">
                             <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10 max-[760px]:text-sm max-[560px]:text-[10px] " onClick={() => {
                                 let sortedList = [...listOfRestaurants];
                                 sortedList.sort((a, b) => a.data.deliveryTime - b.data.deliveryTime);
