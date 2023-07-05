@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Shimmer from "./Shimmer";
 import { AiFillStar } from "react-icons/ai";
 import { MdOutlineTimelapse } from "react-icons/md";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
@@ -8,6 +7,7 @@ import { FaLeaf } from "react-icons/fa";
 // import { MENU_IMG_API } from "../utils/constant";
 // import { initialValue, reducerFunction } from "./reducer/reducer";
 import ResMenu from "./ResMenu";
+import ShimmerMenu from "./ShimmerMenu";
 
 const ResturantMenu = () => {
     const [web, setWeb] = useState(true);
@@ -47,7 +47,7 @@ const ResturantMenu = () => {
 
 
 
-    if (menuData === null) return <Shimmer />
+    if (menuData === null) return <ShimmerMenu className="" />
 
     const { name, cuisines, costForTwoMessage, areaName, avgRatingString, totalRatingsString } = menuData;
     const { lastMileTravelString, deliveryTime } = menuData.sla;

@@ -1,9 +1,9 @@
 
 import { useSelector } from "react-redux";
-import Shimmer from "./Shimmer";
 import { useRef, useEffect } from "react";
 import { incrQuantity, decrQuantity, removeItem } from "../utils/store/slices/cartSlice";
 import { useDispatch } from "react-redux";
+import EmptyCart from "./EmptyCart";
 
 
 
@@ -180,7 +180,7 @@ const Cart = () => {
             :
             (
                 <div className="shimmer">
-                    <Shimmer />
+                    <EmptyCart />
                 </div>
             )
     )

@@ -6,8 +6,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper";
 import { Link } from "react-router-dom";
-import Shimmer from "./Shimmer";
+import ShimmerBody from "./ShimmerBody";
 import { BiSearchAlt } from "react-icons/bi"
+
 
 const Body = () => {
     const [noOfItems, setNoOfItems] = useState(4);
@@ -161,8 +162,8 @@ const Body = () => {
 
             :
             (
-                <div className="shimmer">
-                    <Shimmer />
+                <div className="shimmer flex justify-center w-full">
+                    <ShimmerBody />
                 </div>
             )
 

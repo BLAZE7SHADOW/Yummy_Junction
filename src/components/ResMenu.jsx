@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper";
 import { addItems } from "../utils/store/slices/cartSlice";
 import { useDispatch } from "react-redux";
+import ShimmerResMenu from "./ShimmerResMenu";
 
 
 const ResMenu = () => {
@@ -58,6 +59,7 @@ const ResMenu = () => {
         }
     }, [])
 
+    if (!showAccordians) return <ShimmerResMenu />
 
     return (
         <>
