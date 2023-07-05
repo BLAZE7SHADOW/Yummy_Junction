@@ -13,11 +13,6 @@ const ResturantMenu = () => {
     const [web, setWeb] = useState(true);
     const [menuData, setMenuData] = useState(null);
     const [offers, setOffers] = useState(null);
-    // const [recommendedVeg, setRecommendedVeg] = useState(null);
-    // const [recommendedNonVeg, setRecommendedNonVeg] = useState(null);
-    // const [showRecommended, setShowRecommended] = useState(false);
-    // const [showAccordians, setShowAccordians] = useState(null);
-    // const [state, dispatch] = useReducer(initialValue, reducerFunction);
     const { resId } = useParams();
 
 
@@ -29,6 +24,8 @@ const ResturantMenu = () => {
             const fData = await data.json();
             setMenuData(fData?.data?.cards[0]?.card?.card?.info);
             setOffers(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
+
+            console.log(menuData)
         }
         catch (err) {
             console.log(err);

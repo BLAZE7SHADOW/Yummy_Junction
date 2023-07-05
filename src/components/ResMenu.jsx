@@ -20,6 +20,8 @@ const ResMenu = () => {
     const showAccordians = web ? fData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards : fData?.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
     const dispatch = useDispatch();
 
+
+
     const handleItemClick = (index) => {
         if (activeItem === index) {
             setActiveItem(null); // Collapse the clicked item if it's already active
