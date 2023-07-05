@@ -1,4 +1,4 @@
-import img from "../IMAGES/Cart.jpg"
+import img from "../IMAGES/cart.jpg"
 import { useNavigate } from "react-router-dom";
 const EmptyCart = () => {
     const navigate = useNavigate();
