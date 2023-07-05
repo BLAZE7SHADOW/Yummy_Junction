@@ -10,13 +10,14 @@ import Cart from "./components/Cart";
 import { Provider } from "react-redux";
 import store from "./utils/store/store";
 import Login from "./pages/login";
-
+import BottomTaskBar from "./components/BottomTaskBar";
 const App = () => {
   return (
     <Provider store={store}>
       <div className="app">
         <Navbar />
         <Outlet />
+        <BottomTaskBar className="" />
       </div>
     </Provider>
   )

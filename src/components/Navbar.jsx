@@ -12,6 +12,14 @@ import Badge from '@mui/material/Badge';
 import { logoutHandler, updateLoginDetails } from "../utils/store/slices/loginSlice";
 import { useDispatch } from "react-redux";
 
+
+
+
+
+
+
+
+
 const Navbar = () => {
     const [location, setLocation] = useState(null);
     const [getLoc, setGetLoc] = useState(false);
@@ -25,7 +33,6 @@ const Navbar = () => {
 
     useEffect(() => {
         getLocation();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [getLoc])
 
     useEffect(() => {
@@ -47,24 +54,26 @@ const Navbar = () => {
 
     return (
         <div className="parent flex justify-center w-full ">
-            <div className="navbar flex flex-row justify-between items-center min-w-[1210px]" >
-                <div className="left  flex flex-row justify-center items-center gap-3">
-                    <Link to="/"><div className="logo-container  p-1">
+            <div className="navbar flex  justify-between items-center w-full" >
+                <div className="left  flex  justify-center items-center gap-3 max-[1000px]:w-[50%] max-[660px]:w-full">
+                    <Link to="/"><div className="logo-container  p-1 max-[1000px]:w-full ">
                         <img className="pt-2 logo w-44" src={logoo} alt="" />
                     </div></Link>
-                    <div className="workplace flex flex-row gap-2 items-center justify-start font-semibold p-2 m-2">
+                    <div className="workplace flex  gap-2 items-center justify-start font-semibold p-2 m-2  max-[1000px]:w-[50%]">
                         <LocationOnOutlinedIcon onClick={() => setGetLoc(!getLoc)} className="location " />
-                        <p> {(location !== null ? (location?.city + ", " + location?.region + ", " + location?.country_name) : " ")}</p>
+                        <p className="max-[710px]:text-sm "> {(location !== null ? (location?.city + ", " + location?.region + ", " + location?.country_name) : " ")}</p>
                     </div>
                 </div>
 
 
-                <div className="nav-items flex flex-row justify-center items-center">
-                    <ul className="items flex flex-row justify-center items-center gap-16 m-2 px-10">
-                        <div className="search-btn flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2"><SearchIcon /><div className="search">Search</div></div>
-                        <div className="offer-btn flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2"><PercentIcon /><div className="offers">Offers</div></div>
-                        <div className="help-btn flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2"><SupportIcon /><div className="help">Help</div></div>
-                        <div className="loginout  flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2  w-24"><PermIdentityIcon />
+
+
+                <div className="nav-items flex  justify-center items-center max-[1000px]:w-[50%]  pr-6 max-[660px]:hidden">
+                    <ul className="items flex  justify-center items-center gap-16 m-2 px-10">
+                        <div className="search-btn flex  gap-[5px] justify-center items-center cursor-pointer p-2 max-[1000px]:hidden  "><SearchIcon /><div className="search">Search</div></div>
+                        <div className="offer-btn flex  gap-[5px] justify-center items-center cursor-pointer p-2  max-[1000px]:hidden "><PercentIcon /><div className="offers">Offers</div></div>
+                        <div className="help-btn flex  gap-[5px] justify-center items-center cursor-pointer p-2  max-[1000px]:hidden  "><SupportIcon /><div className="help">Help</div></div>
+                        <div className="loginout  flex  gap-[5px] justify-center items-center cursor-pointer p-2  w-24"><PermIdentityIcon />
 
                             {
                                 loginToken ?
@@ -75,7 +84,7 @@ const Navbar = () => {
 
 
                         </div>
-                        <Link to="/cart"><div className="cart-btn flex flex-row gap-[5px] justify-center items-center cursor-pointer p-2">
+                        <Link to="/cart"><div className="cart-btn flex  gap-[5px] justify-center items-center cursor-pointer p-2 ">
                             <Badge badgeContent={items.length} color="primary">
                                 <ShoppingCartOutlinedIcon />
 

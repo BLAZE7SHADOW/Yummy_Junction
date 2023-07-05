@@ -10,8 +10,8 @@ import { MAIN_API, MENU_IMG_API } from "../utils/constant";
 import Shimmer from "./Shimmer";
 import { BiSearchAlt } from "react-icons/bi"
 
-
 const Body = () => {
+    const [noOfItems, setNoOfItems] = useState(4);
     const [searchText, setSearchText] = useState("");
     const [listOfRestaurants, setListOfRestaurants] = useState(null);
     const [carousel, setCarousel] = useState(null);
@@ -19,14 +19,7 @@ const Body = () => {
 
     const getData = async () => {
         try {
-            const ress = await fetch(MAIN_API, {
-                mode: 'cors',
-                headers: {
-                    'Origin': 'http://localhost:5173',
-                },
-            });
-
-
+            const ress = await fetch(MAIN_API);
             const pinky = await ress.json();
             setListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
             setCarousel(pinky?.data?.cards[0]?.data?.data?.cards);
@@ -47,6 +40,12 @@ const Body = () => {
     useEffect(() => {
         getData();
     }, [])
+    useEffect(() => {
+        let deviceWidth = window.innerWidth;
+        if (deviceWidth < 660 && deviceWidth > 340) {
+            setNoOfItems(2);
+        }
+    }, [])
 
 
 
@@ -56,10 +55,10 @@ const Body = () => {
             <div className="parent w-full">
                 {carousel &&
                     <div className="carousel  w-full flex justify-center bg-black p-[22px] ">
-                        <div className="swiper w-[82%] m-4 p-5 bg-black">
+                        <div className="swiper w-[82%] m-4 p-5 bg-white max-[760px]:w-full ">
 
                             <Swiper
-                                slidesPerView={4}
+                                slidesPerView={noOfItems}
                                 spaceBetween={55}
                                 slidesPerGroup={1}
                                 loop={false}
@@ -92,7 +91,7 @@ const Body = () => {
                     </div>
                 }
                 <div className="body w-full flex flex-col justify-center items-center gap-8">
-                    <div className="filters w-[80%] flex justify-center items-center mt-4 gap-20 pr-5 p-2 ">
+                    <div className="filters w-[80%] flex justify-center items-center mt-4 gap-20 pr-5 p-2 max-[760px]:flex-col max-[760px]:w-full max-[760px]:gap-4 max-[760px]:pr-2 ">
                         <div className="Search w-[30%]  flex justify-center hover:bg-black/10">
                             <input
                                 type="text"
@@ -114,8 +113,8 @@ const Body = () => {
 
                             ><BiSearchAlt className="text-xl" />SEARCH</button>
                         </div>
-                        <div className="filter w-[60%] flex justify-between items-center gap-4">
-                            <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10" onClick={() => {
+                        <div className="filter w-[60%] flex justify-between items-center gap-4 bg-green-400 max-[760px]:w-full">
+                            <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10 max-[760px]:text-sm max-[560px]:text-[10px] " onClick={() => {
                                 let sortedList = [...listOfRestaurants];
                                 sortedList.sort((a, b) => a.data.deliveryTime - b.data.deliveryTime);
                                 setFilterListOfRestaurants(sortedList);
@@ -123,7 +122,7 @@ const Body = () => {
                             }}>
                                 Delivery Time
                             </button>
-                            <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10" onClick={() => {
+                            <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10 max-[760px]:text-sm max-[560px]:text-[10px] " onClick={() => {
                                 let sortedList = [...listOfRestaurants];
                                 sortedList.sort((a, b) => b.data.avgRating - a.data.avgRating);
                                 setFilterListOfRestaurants(sortedList);
@@ -131,14 +130,14 @@ const Body = () => {
                             }}>
                                 Rating
                             </button>
-                            <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10" onClick={() => {
+                            <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10 max-[760px]:text-sm max-[560px]:text-[10px] " onClick={() => {
                                 let sortedList = [...listOfRestaurants];
                                 sortedList.sort((a, b) => a.data.costForTwo - b.data.costForTwo);
                                 setFilterListOfRestaurants(sortedList);
                             }}>
                                 Cost : Low TO High
                             </button>
-                            <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10" onClick={() => {
+                            <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10 max-[760px]:text-sm max-[560px]:text-[10px] " onClick={() => {
                                 let sortedList = [...listOfRestaurants];
                                 sortedList.sort((a, b) => b.data.costForTwo - a.data.costForTwo);
                                 setFilterListOfRestaurants(sortedList);
@@ -150,7 +149,7 @@ const Body = () => {
 
                     </div>
 
-                    <div className="res-container flex flex-wrap  justify-between items-start w-[81%] gap-y-20  ">
+                    <div className="res-container flex flex-wrap  justify-between items-start w-[81%] gap-y-20 max-[760px]:gap-y-0 ">
                         {
                             listOfRestaurants &&
                             filterListOfRestaurants?.map((restaurant) => (<Link key={restaurant?.data?.id} to={"/restaurants/" + restaurant?.data?.id} ><RestaurantCard resData={restaurant} /></Link>))
