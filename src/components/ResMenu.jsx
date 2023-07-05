@@ -21,10 +21,6 @@ const ResMenu = () => {
     const showAccordians = web ? fData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards : fData?.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
     const dispatch = useDispatch();
 
-    console.log(fData);
-    console.log(showAccordians);
-
-
     const handleItemClick = (index) => {
         if (activeItem === index) {
             setActiveItem(null); // Collapse the clicked item if it's already active
@@ -33,7 +29,6 @@ const ResMenu = () => {
         }
     };
     const addVariantHandler = (info) => {
-        // console.log("hhh")
         if ((!(info?.variants.variantGroups) && !(info?.variantsV2.variantGroups) && !(info?.addons))) {
             dispatch(addItems({
                 resName: fData?.data?.cards[0]?.card?.card?.info?.name,
@@ -75,7 +70,7 @@ const ResMenu = () => {
                                 <div key={index} className="div ">
                                     {
                                         <>
-                                            <div className=" flex justify-between bg-white py-3 " onClick={() => handleItemClick(index)}>
+                                            <div className=" flex justify-between bg-white py-3 max-[800px]:px-2" onClick={() => handleItemClick(index)}>
                                                 <span className="summary text-xl font-open font-bold  py-1" > {it?.card?.card?.title} ({(it?.card?.card?.itemCards?.length) ? (it?.card?.card?.itemCards?.length) : (it?.card?.card?.categories?.length)}) </span>
                                                 <span className="pr-5 font-bolder">{activeItem ? "-" : "+"}</span>
                                             </div>
@@ -113,9 +108,9 @@ const ResMenu = () => {
                                             {
                                                 activeItem === index && (it?.card?.card?.itemCards) &&
                                                 ((it?.card?.card?.itemCards)?.map((res) => (
-                                                    <div key={res?.card?.info?.id} className={` w-full py-4 flex flex-col justify-center bg-white my-[2px] ${res?.card?.info?.imageId ? 'pb-12' : ''}`} >
+                                                    <div key={res?.card?.info?.id} className={` w-full py-4 flex flex-col justify-center my-[2px] ${res?.card?.info?.imageId ? 'pb-12' : ''}  max-[800px]:p-2`} >
                                                         <div className="parent flex justify-between items-start ">
-                                                            <div className="data w-[95%] flex flex-col gap-1">
+                                                            <div className="data w-[95%] flex flex-col gap-1 max-[800px]:w-[90%]">
 
                                                                 <div className=" flex flex-col justify-between ">
                                                                     <div className="py-1"> {(res?.card?.info?.itemAttribute?.vegClassifier) === "VEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : (res?.card?.info?.itemAttribute?.vegClassifier) === "NONVEG" ? <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" /> : ""}</div>
@@ -143,7 +138,7 @@ const ResMenu = () => {
                                                                         }
                                                                     </div>
                                                                 </div>
-                                                                <div className="text-[13px] text-slate-500 ">{res?.card?.info?.description}</div>
+                                                                <div className="text-[13px] text-slate-500 max-[800px]:text-[10px] max-[800px]:w-[95%]">{res?.card?.info?.description}</div>
                                                             </div>
                                                             <div className="img-btn-parent ">
                                                                 {

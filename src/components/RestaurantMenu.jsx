@@ -58,16 +58,16 @@ const ResturantMenu = () => {
 
     return (
         <>
-            <div className="main w-full flex flex-col justify-center items-center">
-                <div className="mainBodyRestaurantMenu flex flex-col items-center  w-[51%]">
+            <div className="main w-full flex flex-col justify-center items-center ">
+                <div className="mainBodyRestaurantMenu flex flex-col items-center  w-[51%] max-[800px]:w-full max-[800px]:px-3 ">
                     <div className="firstresNameDetails flex justify-between w-full p-2">
-                        <div className="left">
-                            <h1 className="name text-lg font-bold font-open">{name}</h1>
+                        <div className="left max-[800px]:w-[70%]">
+                            <h1 className="name text-lg font-bold font-open max-[800px]:w-full">{name}</h1>
                             <p>{cuisines.join(", ")}</p>
 
                             <p>{areaName + " " + lastMileTravelString}</p>
                         </div>
-                        <div className="right flex flex-col justify-around p-1 items-center border-[1px] border-gray-300 rounded-xl">
+                        <div className="right flex flex-col justify-around p-1 items-center border-[1px] border-gray-300 rounded-xl max-[800px]:w-[20%]">
                             <div className="rating font-bold text-green-700 flex justify-center items-center gap-[2px]">
                                 <AiFillStar /> <span>{avgRatingString}</span>
                             </div>
@@ -77,7 +77,7 @@ const ResturantMenu = () => {
                         </div>
                     </div>
                     <div className="secondTimeAndOffers flex flex-col w-full ">
-                        <div className="timeandprice w-full flex justify-start gap-5 p-3">
+                        <div className="timeandprice w-full flex justify-start gap-5 p-3 max-[800px]:justify-around">
                             <div className="time flex items-center gap-2 font-open text-black/80 font-bold">
                                 <MdOutlineTimelapse className="timeicon text-2xl" />  <span className="dtime font-[750]">{deliveryTime} MINS</span>
                             </div>

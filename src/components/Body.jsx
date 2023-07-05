@@ -42,7 +42,7 @@ const Body = () => {
     }, [])
     useEffect(() => {
         let deviceWidth = window.innerWidth;
-        if (deviceWidth < 660 && deviceWidth > 340) {
+        if (deviceWidth < 660 && deviceWidth > 300) {
             setNoOfItems(2);
         }
     }, [])
@@ -149,7 +149,7 @@ const Body = () => {
 
                     </div>
 
-                    <div className="res-container flex flex-wrap  justify-between items-start w-[81%] gap-y-20 max-[760px]:gap-y-0 ">
+                    <div className="res-container flex flex-wrap  justify-between items-start w-[81%] gap-y-20 max-[800px]:gap-y-0 ">
                         {
                             listOfRestaurants &&
                             filterListOfRestaurants?.map((restaurant) => (<Link key={restaurant?.data?.id} to={"/restaurants/" + restaurant?.data?.id} ><RestaurantCard resData={restaurant} /></Link>))
