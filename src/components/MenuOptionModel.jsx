@@ -216,7 +216,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                             {console.log(total)}
                             {console.log("hhhh")}
                             {console.log(radioPrice)}
-                            <span className="">RsS {total ? (total + radioPrice) : radioPrice}</span>
+                            <span className="">Rs {total ? (total + radioPrice) : radioPrice}</span>
                         </div>
                         <div>ADD ITEM</div>
                     </button>

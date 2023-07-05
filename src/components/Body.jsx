@@ -19,7 +19,14 @@ const Body = () => {
 
     const getData = async () => {
         try {
-            const ress = await fetch(MAIN_API);
+            const ress = await fetch(MAIN_API, {
+                mode: 'cors',
+                headers: {
+                    'Origin': 'http://localhost:5173',
+                },
+            });
+
+
             const pinky = await ress.json();
             setListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
             setCarousel(pinky?.data?.cards[0]?.data?.data?.cards);

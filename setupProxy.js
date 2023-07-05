@@ -6,9 +6,6 @@ export default function setupProxy(app) {
         createProxyMiddleware({
             target: 'https://www.swiggy.com',
             changeOrigin: true,
-            onProxyRes: function (proxyRes) {
-                proxyRes.headers['access-control-allow-origin'] = '*';
-            },
         })
     );
 }
