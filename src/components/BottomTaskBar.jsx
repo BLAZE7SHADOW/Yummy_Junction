@@ -1,6 +1,4 @@
-import SearchIcon from '@mui/icons-material/Search';
-import PercentIcon from '@mui/icons-material/Percent';
-import SupportIcon from '@mui/icons-material/Support';
+
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Link, useNavigate } from "react-router-dom";
