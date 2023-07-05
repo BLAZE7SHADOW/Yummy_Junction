@@ -55,7 +55,7 @@ const Body = () => {
             <div className="parent w-full">
                 {carousel &&
                     <div className="carousel  w-full flex justify-center bg-black p-[22px] ">
-                        <div className="swiper w-[82%] m-4 p-5 bg-white max-[760px]:w-full ">
+                        <div className="swiper w-[82%] m-4 p-5 bg-black max-[760px]:w-full ">
 
                             <Swiper
                                 slidesPerView={noOfItems}
