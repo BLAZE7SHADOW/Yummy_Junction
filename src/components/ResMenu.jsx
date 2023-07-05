@@ -108,7 +108,7 @@ const ResMenu = () => {
                                             {
                                                 activeItem === index && (it?.card?.card?.itemCards) &&
                                                 ((it?.card?.card?.itemCards)?.map((res) => (
-                                                    <div key={res?.card?.info?.id} className={` w-full py-4 flex flex-col justify-center my-[2px] ${res?.card?.info?.imageId ? 'pb-12' : ''}  max-[800px]:p-2`} >
+                                                    <div key={res?.card?.info?.id} className={` w-full py-4 flex flex-col justify-center bg-white my-[2px] ${res?.card?.info?.imageId ? 'pb-12' : ''}  max-[800px]:p-2`} >
                                                         <div className="parent flex justify-between items-start ">
                                                             <div className="data w-[95%] flex flex-col gap-1 max-[800px]:w-[90%]">
 
