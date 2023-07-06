@@ -1,7 +1,7 @@
 
 import { useSelector } from "react-redux";
 import { useRef, useEffect } from "react";
-import { incrQuantity, decrQuantity, removeItem } from "../utils/store/slices/cartSlice";
+import { incrQuantity, decrQuantity, removeItem, emptyItems } from "../utils/store/slices/cartSlice";
 import { useDispatch } from "react-redux";
 import EmptyCart from "./EmptyCart";
 
@@ -9,43 +9,7 @@ import EmptyCart from "./EmptyCart";
 
 
 
-const handlePaymentSuccess = (payment) => {
-    console.log("Payment Successful:", payment);
-    // Perform necessary actions after successful payment        
-};
 
-const handlePaymentError = (error) => {
-    console.log("Payment Error:", error);
-    // Handle payment errors
-};
-
-const makePayment = async (price) => {
-
-    const options = {
-        key: import.meta.env.VITE_rzp_Id,
-        amount: price * 100,
-        currency: "INR",
-        name: "YUMMY JUNCTION",
-        description: "Thank you for your test purchase",
-        image: '',
-        handler: handlePaymentSuccess,
-        prefill: {
-            name: '',
-            email: '',
-            contact: ''
-        },
-        notes: {
-            address: ''
-        },
-        theme: {
-            color: "#0e5db3"
-        }
-    };
-    // window.RazorpayCheckout.open(options);
-    const razorpayInstance = new window.Razorpay(options);
-    razorpayInstance.on('payment.failed', handlePaymentError);
-    razorpayInstance.open();
-};
 
 
 
@@ -58,12 +22,54 @@ const Cart = () => {
     let totalAmount = useRef(0);
     const items = useSelector(store => store?.cart?.items);
 
+
+
     totalAmount.current = 0;
     const totalHandler = (price, quantity) => {
         totalAmount.current = Number(totalAmount.current) + (price * quantity);
     }
 
 
+
+
+    const handlePaymentSuccess = (payment) => {
+        console.log("Payment Successful:", payment);
+        // Perform necessary actions after successful payment   
+        dispatch(emptyItems());
+    };
+
+    const handlePaymentError = (error) => {
+        console.log("Payment Error:", error);
+        // Handle payment errors
+    };
+
+    const makePayment = async (price) => {
+
+        const options = {
+            key: import.meta.env.VITE_rzp_Id,
+            amount: price * 100,
+            currency: "INR",
+            name: "YUMMY JUNCTION",
+            description: "Thank you for your test purchase",
+            image: '',
+            handler: handlePaymentSuccess,
+            prefill: {
+                name: '',
+                email: '',
+                contact: ''
+            },
+            notes: {
+                address: ''
+            },
+            theme: {
+                color: "#0e5db3"
+            }
+        };
+        // window.RazorpayCheckout.open(options);
+        const razorpayInstance = new window.Razorpay(options);
+        razorpayInstance.on('payment.failed', handlePaymentError);
+        razorpayInstance.open();
+    };
 
 
     useEffect(() => {

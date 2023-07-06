@@ -1,11 +1,11 @@
-import img from "../IMAGES/cart.jpg"
+// import img from "../IMAGES/cart.jpg"
 import { useNavigate } from "react-router-dom";
 const EmptyCart = () => {
     const navigate = useNavigate();
     return (
         <div className="w-full flex flex-col justify-center items-center gap-2 h-[80%] absolute lg:h-full">
             <div className="img w-[33%] max-[700px]:w-[60%]">
-                <img src={img} alt="" className="max-[700px]:w-full" />
+                <img src="https://i.postimg.cc/NFFrr6jc/cart.jpg" alt="" className="max-[700px]:w-full" />
             </div>
             <div className="rest flex flex-col justify-center items-center bottom-14 p-2 max-[660px]:mt-5 lg:relative">
                 <div className="head flex flex-col justify-between items-center">

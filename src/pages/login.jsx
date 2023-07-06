@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import './login.css';
 import { useDispatch } from "react-redux";
 import loginHandler from "../utils/store/services/loginServices";
 
