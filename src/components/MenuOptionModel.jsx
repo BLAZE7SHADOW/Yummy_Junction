@@ -85,7 +85,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
 
     return (
         <div className="model-main fixed inset-0 bg-black/10 flex justify-center items-center z-50">
-            <div className="modelcard bg-slate-50 p-8 flex flex-col justify-between  min-w-[40%] overflow-auto max-h-[90vh] absolute max-[800px]:min-w-0">
+            <div className="modelcard bg-slate-50 p-8 flex flex-col justify-between min-w-0 md:min-w-[40%] overflow-auto max-h-[90vh] absolute m-2 ">
                 <div className="closebtn sticky -top-2 z-10 flex justify-end">
                     <button className=" bg-black/20 rounded-full p-2" onClick={() => setMenuModel(false)}>close</button>
                 </div>
@@ -185,7 +185,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
 
                                                     <div className="flex  items-center">
                                                         <div className="py-3 pr-2"> {(data?.isVeg) === 1 ? <img width="20" height="20" src="https://img.icons8.com/color/48/vegetarian-food-symbol.png" alt="vegetarian-food-symbol" /> : <img width="20" height="20" src="https://img.icons8.com/color/48/non-vegetarian-food-symbol.png" alt="non-vegetarian-food-symbol" />}</div>
-                                                        <label className="optionData flex  py-3 gap-4 w-full justify-between " >
+                                                        <label className="optionData flex py-3 gap-2 md:gap-4 w-5/6 md:w-full justify-between " >
 
                                                             <input type="checkbox" value={data?.price} name="addons" onChange={(e) => totalExtraAddPriceHandler(e.target.checked, data?.price / 100)} />
                                                             <div>{data?.name}</div>
