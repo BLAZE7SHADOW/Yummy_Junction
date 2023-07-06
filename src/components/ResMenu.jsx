@@ -63,7 +63,7 @@ const ResMenu = () => {
 
     return (
         <>
-            <div className="items w-full flex flex-col gap-5 mt-4 bg-slate-100">
+            <div className="items w-full flex flex-col gap-5 mt-4 bg-slate-100 select-none">
                 <div className="thirdRecommended  w-full flex flex-col gap-4 cursor-pointer " >
                     <div className="summaryData flex flex-col justify-between w-full py-4 pt-4 gap-4" >
 

@@ -93,7 +93,7 @@ const Body = () => {
                 }
                 <div className="body w-full flex flex-col justify-center items-center gap-8">
                     <div className="filters w-[80%] flex justify-center items-center mt-4 gap-20 pr-5 p-2 max-[760px]:flex-col max-[760px]:w-full max-[760px]:gap-4 max-[760px]:pr-2 ">
-                        <div className="Search w-[30%]  flex justify-center hover:bg-black/10">
+                        <div className="Search w-[30%]  flex justify-center  sm:hover:bg-black/10 ">
                             <input
                                 type="text"
                                 placeholder="SEARCH"
