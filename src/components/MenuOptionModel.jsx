@@ -84,8 +84,8 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
 
 
     return (
-        <div className="model-main fixed inset-0 bg-black/10 flex justify-center items-center z-100">
-            <div className="modelcard bg-slate-50 p-8 flex flex-col justify-between min-w-[40%] overflow-auto max-h-[90vh] absolute max-[800px]:min-w-0">
+        <div className="model-main fixed inset-0 bg-black/10 flex justify-center items-center z-50">
+            <div className="modelcard bg-slate-50 p-8 flex flex-col justify-between  min-w-[40%] overflow-auto max-h-[90vh] absolute max-[800px]:min-w-0">
                 <div className="closebtn sticky -top-2 z-10 flex justify-end">
                     <button className=" bg-black/20 rounded-full p-2" onClick={() => setMenuModel(false)}>close</button>
                 </div>
