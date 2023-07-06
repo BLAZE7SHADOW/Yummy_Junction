@@ -82,7 +82,7 @@ const Cart = () => {
             <div className="parent w-full flex justify-center items-center bg-black/10 pb-36 mt-5 ">
                 <div className="childParent w-3/4 flex  justify-between  mt-4 max-[800px]:flex-col max-[800px]:w-full max-[800px]:justify-center max-[800px]:items-center">
                     <div className="left w-2/3  flex flex-col justify-center items-center max-[800px]:w-[90%] ">
-                        <div className="topSticky bg-white w-full z-10 sticky top-0">
+                        <div className="topSticky bg-gray-200 w-full z-10 max-[700px]:rounded-lg lg:mb-4">
                             <div className="firstresNameDetails flex justify-between w-full p-2">
                                 <div className="left">
                                     <h1 className="name text-lg font-bold font-open">{items[0]?.resName}</h1>
@@ -126,10 +126,10 @@ const Cart = () => {
                                 })
                             }
                         </div>
-                        <div className="mt-1 sticky bottom-0  w-full">
+                        <div className="mt-1 sticky bottom-0  w-full lg:mt-4">
                             <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold px-12" >
                                 <div className="rate flex justify-start items-center w-2/4">
-                                    TOTAL
+                                    SUB-TOTAL
                                 </div>
                                 <div className="flex justify-end items-center w-2/4"> ₹ {totalAmount?.current?.toFixed(2)}</div>
                             </button>
@@ -166,7 +166,7 @@ const Cart = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-2 sticky bottom-0  w-full max-[800px]:bottom-24" >
+                        <div className="mt-2 sticky bottom-0  w-full max-[800px]:bottom-14" >
                             <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold rounded-md" onClick={() => makePayment(totalAmount.current + 50)}>
                                 <div className="rate">PROCEED TO PAY</div>
                                 <div className="w-28 p-1 ">₹ {(totalAmount?.current + 50)?.toFixed(2)}</div>
