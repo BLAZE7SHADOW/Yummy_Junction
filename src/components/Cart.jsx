@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react";
 import { incrQuantity, decrQuantity, removeItem, emptyItems } from "../utils/store/slices/cartSlice";
 import { useDispatch } from "react-redux";
 import EmptyCart from "./EmptyCart";
+import { BsArrowRightSquareFill } from "react-icons/bs"
 
 
 
@@ -174,7 +175,7 @@ const Cart = () => {
                         </div>
                         <div className="mt-2 sticky bottom-0  w-full max-[800px]:bottom-14" >
                             <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold rounded-md" onClick={() => makePayment(totalAmount.current + 50)}>
-                                <div className="rate">PROCEED TO PAY</div>
+                                <div className="rate flex gap-2 items-center">PROCEED TO PAY <BsArrowRightSquareFill /></div>
                                 <div className="w-28 p-1 ">₹ {(totalAmount?.current + 50)?.toFixed(2)}</div>
                             </button>
                         </div>

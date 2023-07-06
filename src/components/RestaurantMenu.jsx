@@ -90,8 +90,10 @@ const ResturantMenu = () => {
                                         </div>
                                         <div className="offercode flex justify-around text-xs  gap-1 font-bold text-gray-600">
                                             <div>{res.info.couponCode}</div>
-                                            |
-                                            <p>{res.info.description}</p>
+                                            {res.info.description &&
+
+                                                <p>| {res.info.description}</p>
+                                            }
                                         </div>
                                     </div>
                                 )
