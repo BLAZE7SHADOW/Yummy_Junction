@@ -81,15 +81,16 @@ const ResturantMenu = () => {
                                 <HiOutlineCurrencyRupee className="rupeeicon text-2xl font-thin" />  <span className="costmsg font-bold">{costForTwoMessage}</span>
                             </div>
                         </div>
-                        <div className="offers w-full flex justify-between gap-2 bg-red-500">
+                        <div className="offers flex w-full justify-start gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden py-2 my-2 max-[700px]:my-0">
                             {
                                 offers?.map((res) => (
-                                    <div key={res.info.offerIds} className="singleoffer w-[25%] border-[1px] border-black bg-pink-500 text-sm p-2 rounded-md">
-                                        <div className="offerpercentage">
+                                    <div key={res.info.offerIds} className="singleoffer min-w-[28%] border-[2px] border-black/20  text-sm py-1 px-2 rounded-md flex flex-col justify-center items-start gap-2 max-[700px]:min-w-[50%]">
+                                        <div className="offerpercentage font-bold text-gray-700">
                                             <h1>{res.info.header}</h1>
                                         </div>
-                                        <div className="offercode flex flex-col text-xs">
+                                        <div className="offercode flex justify-around text-xs  gap-1 font-bold text-gray-600">
                                             <div>{res.info.couponCode}</div>
+                                            |
                                             <p>{res.info.description}</p>
                                         </div>
                                     </div>

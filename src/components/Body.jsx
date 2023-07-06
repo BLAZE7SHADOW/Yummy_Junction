@@ -102,7 +102,7 @@ const Body = () => {
                                 onChange={(e) => setSearchText(e.target.value)}
                             />
                             <button
-                                className="search-button flex justify-center items-center gap-2 p-2 px-3 m-2 bg-green-400 rounded text-sm text-gray-800 font-semibold"
+                                className="search-button flex justify-center items-center gap-2 p-2 px-3 m-2 bg-green-300 rounded text-sm text-gray-800 font-semibold"
                                 onClick={() => {
 
                                     let data = filterData(searchText, listOfRestaurants);
@@ -114,7 +114,7 @@ const Body = () => {
 
                             ><BiSearchAlt className="text-xl" />SEARCH</button>
                         </div>
-                        <div className="filter w-[60%] flex justify-between items-center gap-4  max-[760px]:w-full max-[760px]:bg-green-400">
+                        <div className="filter w-[60%] flex justify-between items-center gap-3 rounded-lg  max-[760px]:w-full max-[760px]:bg-gray-200 max-[760px]:font-bold px-1">
                             <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10 max-[760px]:text-sm max-[560px]:text-[10px] " onClick={() => {
                                 let sortedList = [...listOfRestaurants];
                                 sortedList.sort((a, b) => a.data.deliveryTime - b.data.deliveryTime);
@@ -136,7 +136,7 @@ const Body = () => {
                                 sortedList.sort((a, b) => a.data.costForTwo - b.data.costForTwo);
                                 setFilterListOfRestaurants(sortedList);
                             }}>
-                                Cost : Low TO High
+                                Cost : Low To High
                             </button>
                             <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10 max-[760px]:text-sm max-[560px]:text-[10px] " onClick={() => {
                                 let sortedList = [...listOfRestaurants];
