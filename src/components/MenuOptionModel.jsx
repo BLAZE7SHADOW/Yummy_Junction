@@ -14,7 +14,7 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
     const setTotalInfo = (variation, amount) => {
         setInfo(variation)
         setRadioPrice(amount)
-        console.log("amount" + amount);
+
     }
 
     const totalExtraAddPriceHandler = (condition, initialPrice) => {
@@ -121,17 +121,11 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                                                 </div>
                                             )
                                         }))
-
                                     }
-
-
                                 </div>
                             )
                         })
                     }
-
-
-
                     {
                         (variantData?.variants?.variantGroups) &&
 
