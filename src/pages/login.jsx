@@ -20,7 +20,7 @@ const Login = () => {
 
     return (
         <>
-            <div className="login-body">
+            <div className="login-body w-full bg-pink-400">
                 <div className="img">
                     <div className="login-form">
                         <div className="login">

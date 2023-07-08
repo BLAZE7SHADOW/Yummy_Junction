@@ -63,7 +63,7 @@ const ResMenu = () => {
 
     return (
         <>
-            <div className="items w-full flex flex-col gap-5 mt-4 bg-slate-100 select-none">
+            <div className="items w-full flex flex-col gap-5 mt-4 bg-slate-100 select-none mb-8">
                 <div className="thirdRecommended  w-full flex flex-col gap-4 cursor-pointer " >
                     <div className="summaryData flex flex-col justify-between w-full py-4 pt-4 gap-4" >
 
@@ -166,7 +166,7 @@ const ResMenu = () => {
                                                 (it?.card?.card?.categories)?.map((ress, Categoryindex) => {
                                                     return (
                                                         <div key={Categoryindex}>
-                                                            <div className=" flex justify-between bg-white my-2 px-4" onClick={() => handleItemClick(index)}>
+                                                            <div className=" flex justify-between bg-white my-3 max-[700px]:px-4 max-[700px]:my-2" onClick={() => handleItemClick(index)}>
                                                                 <span className="summary text-base font-open font-semibold flex flex-col py-2 " > {ress?.title} ({(ress?.itemCards?.length) ? (ress?.itemCards?.length) : ""}) </span>
                                                             </div>
                                                             {

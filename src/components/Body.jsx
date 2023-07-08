@@ -17,6 +17,9 @@ const Body = () => {
     const [carousel, setCarousel] = useState(null);
     const [filterListOfRestaurants, setFilterListOfRestaurants] = useState(null);
 
+
+
+
     const getData = async () => {
         try {
             const ress = await fetch(import.meta.env.VITE_MAIN_API);
