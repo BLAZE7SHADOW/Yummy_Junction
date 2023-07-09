@@ -32,6 +32,7 @@ const ResMenu = () => {
     };
     const addVariantHandler = (info) => {
         if ((!(info?.variants.variantGroups) && !(info?.variantsV2.variantGroups) && !(info?.addons))) {
+            console.log("dfghjk")
             dispatch(addItems({
                 resName: fData?.data?.cards[0]?.card?.card?.info?.name,
                 name: info?.name,
@@ -134,11 +135,7 @@ const ResMenu = () => {
                                                                                     <span>₹ {(res?.card?.info?.price / 100)}</span>
                                                                                 </div>
                                                                         }
-                                                                        {
-                                                                            menuModel &&
 
-                                                                            <MenuOptionModel setMenuModel={setMenuModel} variantData={variantData} fData={fData} />
-                                                                        }
                                                                     </div>
                                                                 </div>
                                                                 <div className="text-[13px] text-slate-500 max-[800px]:text-[10px] max-[800px]:w-[95%]">{res?.card?.info?.description}</div>
@@ -219,6 +216,11 @@ const ResMenu = () => {
                                                     )
                                                 }
                                                 )
+                                            }
+                                            {
+                                                menuModel &&
+
+                                                <MenuOptionModel setMenuModel={setMenuModel} variantData={variantData} fData={fData} />
                                             }
                                         </>
                                     }

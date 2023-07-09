@@ -10,7 +10,6 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
     const [info, setInfo] = useState(null);
     const [total, setTotal] = useState((variantData?.price) ? (variantData?.price / 100) : 0);
 
-
     const setTotalInfo = (variation, amount) => {
         setInfo(variation)
         setRadioPrice(amount)
@@ -162,8 +161,6 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                             )
                         })
                     }
-
-
                     {
                         (variantData?.addons) &&
 
