@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import logoo from "../IMAGES/LOGOO.png"
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import SearchIcon from '@mui/icons-material/Search';
@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import Badge from '@mui/material/Badge';
 import { logoutHandler, updateLoginDetails } from "../utils/store/slices/loginSlice";
 import { useDispatch } from "react-redux";
-import useLocation from "../utils/useLocation";
+
 
 
 
@@ -23,19 +23,32 @@ import useLocation from "../utils/useLocation";
 
 const Navbar = () => {
 
-
-
+    const [location, setLocation] = useState(null);
     const items = useSelector(store => store?.cart?.items)
     const loginToken = useSelector(store => store?.login?.loginToken)
     const navigate = useNavigate();
-    const location = useLocation();
     const dispatch = useDispatch();
 
+    const getLocation = async () => {
+        const END_POINT = `https://ipapi.co/json`;
+        try {
+            let locationData = await fetch(END_POINT);
+            let finalLocData = await locationData.json();
+            setLocation(finalLocData);
+        }
+        catch (err) {
+            console.log(err);
+        }
+    };
 
+    // useEffect(() => {
+
+    // }, [])
 
     useEffect(() => {
         const userDetails = JSON.parse(localStorage.getItem('user'))
         dispatch(updateLoginDetails(userDetails));
+        getLocation();
     }, [])
 
 
@@ -80,8 +93,8 @@ const Navbar = () => {
                     </ul>
                 </div>
 
-            </div >
-        </div >
+            </div>
+        </div>
     )
 }
 

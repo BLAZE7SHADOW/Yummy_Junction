@@ -12,6 +12,7 @@ import store from "./utils/store/store";
 import Login from "./pages/login";
 import BottomTaskBar from "./components/BottomTaskBar";
 import Footer from "./components/Footer";
+import Success from "./pages/Success";
 
 
 const AboutME = lazy(() => import("./components/AboutMe"));
@@ -45,7 +46,14 @@ export const appRouter = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart />
+        element: <Cart />,
+        children: [
+          {
+            path: "success",
+            element: <Success />
+          }
+        ]
+
       },
       {
         path: "/login",

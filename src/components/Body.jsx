@@ -27,10 +27,8 @@ const Body = () => {
             setListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
             setCarousel(pinky?.data?.cards[0]?.data?.data?.cards);
             setFilterListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
-
         }
         catch (err) {
-
             console.log(err);
         }
     }
