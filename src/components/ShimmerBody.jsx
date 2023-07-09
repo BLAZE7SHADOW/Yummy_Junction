@@ -11,7 +11,7 @@ const ShimmerBody = () => {
                 </div>)
             }
 
-        </div >)
+        </div>)
 
 
 }
