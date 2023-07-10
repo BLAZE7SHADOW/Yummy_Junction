@@ -54,7 +54,7 @@ const Body = () => {
     return (
         listOfRestaurants ? (
 
-            <div className="parent w-full">
+            <div className="parent w-full lg:mb-5">
                 {carousel &&
                     <div className="carousel  w-full flex justify-center bg-black p-[22px] ">
                         <div className="swiper w-[82%] m-4 p-5 bg-black max-[760px]:w-full max-[760px]:m-0  ">

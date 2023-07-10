@@ -11,6 +11,7 @@ import BottomTaskBar from "./components/BottomTaskBar";
 import Footer from "./components/Footer";
 import Success from "./pages/Success";
 import Login from "./pages/Loginn";
+import MyDetail from "./components/MyDetail";
 
 
 const AboutME = lazy(() => import("./components/AboutMe"));
@@ -21,6 +22,7 @@ const App = () => {
       <div className="app">
         <Navbar />
         <Outlet />
+        <MyDetail />
         <Footer />
         <BottomTaskBar />
       </div>

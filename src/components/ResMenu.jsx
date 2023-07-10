@@ -80,9 +80,9 @@ const ResMenu = () => {
                                             </div>
                                             {
                                                 it?.card?.card?.carousel && activeItem === index &&
-                                                <div className="parent bg-blue-400 w-full">
+                                                <div className="parenT w-full">
                                                     <Swiper
-                                                        slidesPerView={4}
+                                                        slidesPerView={3}
                                                         spaceBetween={55}
                                                         slidesPerGroup={1}
                                                         loop={false}
@@ -96,10 +96,10 @@ const ResMenu = () => {
                                                         {
                                                             (it?.card?.card?.carousel)?.map((rees) => {
                                                                 return (
-                                                                    <div key={index} className="parentCarousel">
+                                                                    <div key={index} className="parentCarousel pl-5">
                                                                         <SwiperSlide key={rees?.bannerId} className="py-10">
                                                                             <div className="">
-                                                                                <img src={import.meta.env.VITE_MENU_IMG_API + rees?.dish?.info?.imageId} alt="" className="hover:scale-110 transition-all duration-[0.6s] ease-in-out z-[99999]" />
+                                                                                <img src={import.meta.env.VITE_MENU_IMG_API + rees?.dish?.info?.imageId} alt="" className="hover:scale-110 transition-all duration-[0.6s] ease-in-out z-[99999] rounded-xl" />
                                                                             </div>
                                                                         </SwiperSlide>
                                                                     </div>
