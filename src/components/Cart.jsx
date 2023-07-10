@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import EmptyCart from "./EmptyCart";
 import { BsArrowRightSquareFill } from "react-icons/bs"
 import { useNavigate } from "react-router-dom";
+// import Login from "../pages/Login";
 
 
 
@@ -23,7 +24,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     let totalAmount = useRef(0);
     const items = useSelector(store => store?.cart?.items);
-
+    // const loginToken = useSelector(store => store?.login?.loginToken);
 
 
     totalAmount.current = 0;
@@ -85,6 +86,12 @@ const Cart = () => {
             document.body.removeChild(script);
         };
     }, []);
+
+
+
+
+
+
 
     return (
         items.length !== 0

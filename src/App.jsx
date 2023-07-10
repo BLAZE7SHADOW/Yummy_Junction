@@ -7,7 +7,7 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Cart from "./components/Cart";
 import { Provider } from "react-redux";
 import store from "./utils/store/store";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import BottomTaskBar from "./components/BottomTaskBar";
 import Footer from "./components/Footer";
 import Success from "./pages/Success";

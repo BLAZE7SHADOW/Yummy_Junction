@@ -15,11 +15,6 @@ import { useDispatch } from "react-redux";
 
 
 
-
-
-
-
-
 const Navbar = () => {
 
     const [location, setLocation] = useState(null);
@@ -40,9 +35,6 @@ const Navbar = () => {
         }
     };
 
-    // useEffect(() => {
-
-    // }, [])
 
     useEffect(() => {
         const userDetails = JSON.parse(localStorage.getItem('user'))
@@ -73,14 +65,12 @@ const Navbar = () => {
                         <div className="offer-btn flex  gap-[5px] justify-center items-center cursor-pointer p-2  max-[1000px]:hidden "><PercentIcon /><div className="offers">Offers</div></div>
                         <div className="help-btn flex  gap-[5px] justify-center items-center cursor-pointer p-2  max-[1000px]:hidden  "><SupportIcon /><div className="help" onClick={() => navigate('/aboutme')} > ABOUT ME</div></div>
                         <div className="loginout  flex  gap-[5px] justify-center items-center cursor-pointer p-2  w-24"><PermIdentityIcon />
-
                             {
                                 loginToken ?
                                     <button className="btnname  cursor-pointer " onClick={() => dispatch(logoutHandler())}> LOGOUT </button>
                                     :
                                     <button className="btnname  cursor-pointer " onClick={() => navigate('/login')}> LOGIN </button>
                             }
-
 
                         </div>
                         <Link to="/cart"><div className="cart-btn flex  gap-[5px] justify-center items-center cursor-pointer p-2 ">
@@ -96,5 +86,4 @@ const Navbar = () => {
         </div>
     )
 }
-
 export default Navbar;

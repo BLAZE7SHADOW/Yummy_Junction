@@ -63,7 +63,7 @@ const ResturantMenu = () => {
 
                             <p>{areaName + " " + lastMileTravelString}</p>
                         </div>
-                        <div className="right flex flex-col justify-around p-1 items-center border-[1px] border-gray-300 rounded-xl max-[800px]:w-[20%]">
+                        <div className="right max-[700px]:max-h-24 flex flex-col justify-around p-1 items-center border-[1px] border-gray-300 rounded-xl max-[800px]:w-[20%]">
                             <div className="rating font-bold text-green-700 flex justify-center items-center gap-[2px]">
                                 <AiFillStar /> <span>{avgRatingString}</span>
                             </div>
@@ -85,8 +85,8 @@ const ResturantMenu = () => {
                             {
                                 offers?.map((res) => (
                                     <div key={res.info.offerIds} className="singleoffer min-w-[28%] border-[2px] border-black/20  text-sm py-1 px-2 rounded-md flex flex-col justify-center items-start gap-2 max-[700px]:min-w-[50%]">
-                                        <div className="offerpercentage font-bold text-gray-700">
-                                            <h1>{res.info.header}</h1>
+                                        <div className="offerpercentage flex justify-center items-center gap-1 lg:gap-2 font-bold text-gray-700">
+                                            <h1>{res.info.header}</h1> <img className="w-5  lg:w-6" src="https://i.postimg.cc/zGpWW9vq/5970436.png" alt="" />
                                         </div>
                                         <div className="offercode flex justify-around text-xs  gap-1 font-bold text-gray-600">
                                             <div>{res.info.couponCode}</div>
