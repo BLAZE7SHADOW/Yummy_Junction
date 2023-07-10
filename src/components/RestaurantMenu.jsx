@@ -25,7 +25,7 @@ const ResturantMenu = () => {
             setMenuData(fData?.data?.cards[0]?.card?.card?.info);
             setOffers(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
 
-            console.log(menuData)
+
         }
         catch (err) {
             console.log(err);

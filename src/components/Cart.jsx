@@ -176,7 +176,7 @@ const Cart = () => {
                                     </div>
                                     <div className="delivery flex justify-between items-center">
                                         <div className="head">
-                                            Delivery Fee | 1.9 kms
+                                            Delivery Fee | {items[0]?.deliveryDistance}
                                         </div>
                                         <div className="price w-20">
                                             ₹ 40

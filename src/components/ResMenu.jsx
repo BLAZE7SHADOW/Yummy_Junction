@@ -32,7 +32,7 @@ const ResMenu = () => {
     };
     const addVariantHandler = (info) => {
         if ((!(info?.variants.variantGroups) && !(info?.variantsV2.variantGroups) && !(info?.addons))) {
-            console.log("dfghjk")
+
             dispatch(addItems({
                 resName: fData?.data?.cards[0]?.card?.card?.info?.name,
                 name: info?.name,
