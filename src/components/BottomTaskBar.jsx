@@ -17,7 +17,7 @@ const BottomTaskBar = () => {
     return (
         <div className="w-full shadow-lg bg-white fixed bottom-0 md:hidden">
 
-            <ul className="items flex w-full justify-around items-center gap-16 m-2 ">
+            <ul className="items flex w-full justify-around items-center m-2 ">
                 <div className="loginout  flex  gap-[5px] justify-center items-center cursor-pointer p-2  w-24"><PermIdentityIcon />
 
                     {
@@ -29,6 +29,17 @@ const BottomTaskBar = () => {
 
 
                 </div>
+
+
+                <Link to="/aboutme">
+                    <div className="slogo w-10">
+                        <img src="https://i.postimg.cc/yY2vkBFZ/9871839.png" alt="" />
+                    </div>
+                </Link>
+
+
+
+
                 <Link to="/cart"><div className="cart-btn flex  gap-[5px] justify-center items-center cursor-pointer p-2 ">
                     <Badge badgeContent={items.length} color="primary">
                         <ShoppingCartOutlinedIcon />

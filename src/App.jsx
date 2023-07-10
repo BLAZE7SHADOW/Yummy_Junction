@@ -2,10 +2,8 @@ import { lazy, Suspense } from "react";
 import Navbar from "./components/Navbar";
 import Body from "./components/Body";
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import About from "./components/About";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
-// import AboutMe from "./components/AboutMe";
 import Cart from "./components/Cart";
 import { Provider } from "react-redux";
 import store from "./utils/store/store";
@@ -39,10 +37,6 @@ export const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <Body />
-      },
-      {
-        path: "/about",
-        element: <About />
       },
       {
         path: "/cart",

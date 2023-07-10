@@ -25,7 +25,7 @@ const AboutMe = () => {
         <div className="main w-full flex flex-col justify-center items-center ">
             <div className="mainBodyRestaurantMenu w-full flex flex-col items-center lg:w-[60%] max-[800px]:px-3 ">
                 <div className="firstresNameDetails flex justify-between w-full px-2 my-4 lg:mx-10 ">
-                    <div className="left flex flex-col justify-center gap-2 ">
+                    <div className="left flex flex-col justify-center gap-2  rounded-xl">
                         <h1 className="name text-lg font-bold font-open  max-[800px]:w-full md:text-2xl">SHIVAM GOVIND RAO</h1>
                         <p className=" text-sm font-semibold text-gray-500">FRONTEND WEB DEVELOPER</p>
 
