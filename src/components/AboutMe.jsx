@@ -112,10 +112,45 @@ const AboutMe = () => {
                 </div>
                 {activeItem === "aboutThisProject" && (
                     <div className="flex mb-3 justify-center items-center font-sans bg-black/5 lg:w-[70%]">
-                        <div className="content px-4 text-sm  p-2">
-                            Detail-oriented individual with a B.Tech in Computer Science & Engineering, looking for a Frontend Developer position in a fast-growing
-                            company to utilize my technical skills and working knowledge of software applications, development and design. I want to work in a
-                            competitive environment where I can enhance my skills along with facing the new Situations, learning new things.
+                        <div className="content px-4 text-sm  p-2 flex flex-col justify-start gap-2">
+
+
+                            <ul className="flex flex-col justify-between gap-2 lg:items-start">
+                                <li>- Authentication with Dummy Json.</li>
+                                <li>- Real time Swiggy API DATA of #ayodhya.</li>
+                                <li>- Detailed Menu page almost same features as Swiggy.</li>
+                                <li>- Payment Integration with Razorpay.</li>
+                                <li>- Added LAZY LOADING in About-Me page.</li>
+                                <li>- 🟢|🔴 Veg & Non Veg icon is also Dynamically used based on food.</li>
+                                <li>- Every Detail/Data used is dynamically coming from Swiggy Api.</li>
+                                <li>- Hosted on Netlify</li>
+                                <li>- Your Location Will be at Top🔝</li>
+                            </ul>
+                            <div className="HEAD">
+                                Tech stack used :
+                            </div>
+                            <ul className="flex flex-col justify-between items-start">
+                                <li> - ✅ React</li>
+                                <li> - ✅ Redux</li>
+                                <li> - ✅ React Router v6</li>
+                                <li> - ✅ Tailwind Labs CSS</li>
+                                <li> - ✅ Material UI</li>
+                                <li> - ✅ GitHub</li>
+                                <li> - ✅ Netlify for Deployment</li>
+                                <li> - ✅ Swiggy Api</li>
+                                <li> - ✅ Custom Hooks</li>
+                                <li> - ✅ Custom Shimmer</li>
+                                <li> - ✅ React Carousel</li>
+                                <li> - ✅ Lazy Loading</li>
+                            </ul>
+
+                            <div className="flex flex-col justify-between lg:items-start gap-2">
+                                <div>DO CHECK IT ❤️</div>
+                                <Link to="https://yummyjunction.netlify.app/"><button className="bg-green-500 rounded-lg p-2 lg:text-xl font-semibold px-4">Live link</button></Link>
+                                <Link to="https://github.com/BLAZE7SHADOW/Yummy_Junction"><button className="bg-green-500 rounded-lg p-2 lg:text-xl font-semibold px-4">Github link</button></Link>
+
+
+                            </div>
                         </div>
                     </div>
                 )}
