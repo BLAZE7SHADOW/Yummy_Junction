@@ -10,7 +10,7 @@ import store from "./utils/store/store";
 import BottomTaskBar from "./components/BottomTaskBar";
 import Footer from "./components/Footer";
 import Success from "./pages/Success";
-import Login from "./pages/Login";
+import Login from "./pages/Loginn";
 
 
 const AboutME = lazy(() => import("./components/AboutMe"));

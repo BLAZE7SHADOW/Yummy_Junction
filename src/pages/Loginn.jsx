@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import loginHandler from "../utils/store/services/loginServices";
 
-const Login = () => {
+const Loginn = () => {
 
     const loginToken = useSelector(store => store?.login?.loginToken);
     const dispatch = useDispatch();
@@ -44,5 +44,5 @@ const Login = () => {
         </div>
     )
 }
-export default Login;
+export default Loginn;
 
