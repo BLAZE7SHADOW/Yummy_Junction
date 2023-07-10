@@ -23,7 +23,7 @@ const EmptyCart = () => {
                         </div>
 
                     </div>
-                    {console.log(loginToken)}
+
                     <button className="bg-green-500 rounded-lg p-2 lg:text-xl font-semibold px-4" onClick={() => navigate('/')}>SEE RESTAURANTS NEAR YOU</button>
                 </div>
 
@@ -35,7 +35,7 @@ const EmptyCart = () => {
                     <div className="div flex justify-around gap-4 items-center m-10 flex-col ">
                         <img src="https://i.postimg.cc/yNJKjHfB/ezgif-com-video-to-gif.gif" alt="" />
                         <button onClick={() => navigate('/login')} className="bg-green-500 rounded-lg p-2 lg:text-xl font-semibold px-4">LOGIN TO VIEW</button>
-                        {console.log(loginToken)}
+
                     </div>
                 </div>
             </div>

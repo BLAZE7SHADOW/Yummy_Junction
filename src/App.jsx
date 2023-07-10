@@ -7,10 +7,10 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Cart from "./components/Cart";
 import { Provider } from "react-redux";
 import store from "./utils/store/store";
-import Login from "./pages/Login";
 import BottomTaskBar from "./components/BottomTaskBar";
 import Footer from "./components/Footer";
 import Success from "./pages/Success";
+import Login from "./pages/Login";
 
 
 const AboutME = lazy(() => import("./components/AboutMe"));
