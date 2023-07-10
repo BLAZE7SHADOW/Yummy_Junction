@@ -47,7 +47,7 @@ const AboutMe = () => {
                     className="flex justify-between items-center px-2 bg-black/20 rounded-xl mb-2 w-full py-1 max-[800px]:px-2 lg:w-[70%]"
                     onClick={() => handleItemClick("me")}
                 >
-                    <span className="summary text-base pl-4 font-open font-bold py-1 lg:text-xl lg:p-3 ">ME</span>
+                    <span className="summary text-base pl-4 font-open font-bold py-1 lg:text-xl lg:p-3 ">ABOUT ME</span>
                     <span className="pr-4">{activeItem === "me" ? <BsUnlockFill /> : <BsLockFill />}</span>
                 </div>
                 {activeItem === "me" && (
@@ -70,16 +70,18 @@ const AboutMe = () => {
                     <div className="flex mb-3 justify-center items-center font-sans bg-black/5 rounded-xl lg:w-[70%]">
                         <div className="content px-4 text-sm  p-2 flex justify-around flex-wrap gap-3 py-4 ">
                             <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">REACT JS</span>
-                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">REACT JS</span>
-                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">REACT JS</span>
-                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">REACT JS</span>
-                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">REACT JS</span>
-                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">REACT JS</span>
-                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">REACT JS</span>
-                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">REACT JS</span>
-                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">REACT JS</span>
-                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">REACT JS</span>
-                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">REACT JS</span>
+                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">REDUX</span>
+                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">JAVASCRIPT</span>
+                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">TAILWIND</span>
+                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">CSS3</span>
+                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">HTML5</span>
+                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">C & C++</span>
+                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[28%] lg:mx-2">DATA STRUCTURES & ALGORITHMS</span>
+                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">DBMS</span>
+                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">GIT</span>
+                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">GITHUB</span>
+                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[14%] lg:mx-5">00PS</span>
+                            <span className="bg-black/5 font-medium text-slate-700 rounded-md p-2 hover:bg-black/20 hover:transition-transform flex justify-center items-center lg:w-[18%] lg:mx-5">PROBLEM SOLVING</span>
                         </div>
                     </div>
                 )}

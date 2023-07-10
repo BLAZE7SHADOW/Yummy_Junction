@@ -24,7 +24,7 @@ const Cart = () => {
     const dispatch = useDispatch();
     let totalAmount = useRef(0);
     const items = useSelector(store => store?.cart?.items);
-    // const loginToken = useSelector(store => store?.login?.loginToken);
+    const loginToken = useSelector(store => store?.login?.loginToken);
 
 
     totalAmount.current = 0;
@@ -77,6 +77,14 @@ const Cart = () => {
 
 
     useEffect(() => {
+
+        if (!loginToken) {
+            navigate("/login")
+        }
+
+
+
+
         const script = document.createElement("script");
         script.src = "https://checkout.razorpay.com/v1/checkout.js";
         script.async = true;
