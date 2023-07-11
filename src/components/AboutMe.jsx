@@ -146,7 +146,7 @@ const AboutMe = () => {
 
                             <div className="flex flex-col justify-between lg:items-start gap-2">
                                 <div>DO CHECK IT ❤️</div>
-                                <Link to="https://yummyjunction.netlify.app/"><button className="bg-green-500 rounded-lg p-2 lg:text-xl font-semibold px-4">Live link</button></Link>
+                                <Link to="https://yummyjunction.netlify.app/"><button className="webapp bg-green-500 rounded-lg p-2 lg:text-xl font-semibold px-4">Live link</button></Link>
                                 <Link to="https://github.com/BLAZE7SHADOW/Yummy_Junction"><button className="bg-green-500 rounded-lg p-2 lg:text-xl font-semibold px-4">Github link</button></Link>
 
 
