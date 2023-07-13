@@ -45,12 +45,12 @@ const AboutMe = () => {
 
                 <div
                     className="flex justify-between items-center px-2 bg-black/20 rounded-xl mb-2 w-full py-1 max-[800px]:px-2 lg:w-[70%]"
-                    onClick={() => handleItemClick("me")}
+                    onClick={() => handleItemClick("aboutme")}
                 >
                     <span className="summary text-base pl-4 font-open font-bold py-1 lg:text-xl lg:p-3 ">ABOUT ME</span>
                     <span className="pr-4">{activeItem === "me" ? <BsUnlockFill /> : <BsLockFill />}</span>
                 </div>
-                {activeItem === "me" && (
+                {activeItem === "aboutme" && (
                     <div className="flex mb-3 justify-center items-center font-sans bg-black/5 rounded-xl lg:w-[70%]">
                         <div className="content px-4 text-sm font-medium py-4 p-2">
                             Detail-oriented individual with a B.Tech in Computer Science & Engineering, looking for a Frontend Developer position in a fast-growing
