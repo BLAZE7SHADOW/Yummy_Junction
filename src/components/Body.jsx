@@ -36,7 +36,7 @@ const Body = () => {
     }
 
     function filterData(searchText, listOfRestaurants) {
-        const filterData = listOfRestaurants?.filter((re) => re?.data?.name?.toUpperCase()?.includes(searchText?.toUpperCase()));
+        const filterData = listOfRestaurants?.filter((re) => re?.info?.name?.toUpperCase()?.includes(searchText?.toUpperCase()));
         return filterData;
     }
 
@@ -120,7 +120,7 @@ const Body = () => {
                         <div className="filter w-[60%] flex justify-between items-center gap-3 rounded-lg  max-[760px]:w-full max-[760px]:bg-gray-200 max-[760px]:font-bold px-1">
                             <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10 max-[760px]:text-sm max-[560px]:text-[10px] " onClick={() => {
                                 let sortedList = [...listOfRestaurants];
-                                sortedList.sort((a, b) => a.data.deliveryTime - b.data.deliveryTime);
+                                sortedList.sort((a, b) => a.info.deliveryTime - b.info.deliveryTime);
                                 setFilterListOfRestaurants(sortedList);
 
                             }}>
@@ -128,7 +128,7 @@ const Body = () => {
                             </button>
                             <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10 max-[760px]:text-sm max-[560px]:text-[10px] " onClick={() => {
                                 let sortedList = [...listOfRestaurants];
-                                sortedList.sort((a, b) => b.data.avgRating - a.data.avgRating);
+                                sortedList.sort((a, b) => b.info.avgRating - a.info.avgRating);
                                 setFilterListOfRestaurants(sortedList);
 
                             }}>
@@ -136,14 +136,14 @@ const Body = () => {
                             </button>
                             <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10 max-[760px]:text-sm max-[560px]:text-[10px] " onClick={() => {
                                 let sortedList = [...listOfRestaurants];
-                                sortedList.sort((a, b) => a.data.costForTwo - b.data.costForTwo);
+                                sortedList.sort((a, b) => a.info.costForTwo - b.info.costForTwo);
                                 setFilterListOfRestaurants(sortedList);
                             }}>
                                 Cost : Low To High
                             </button>
                             <button className="filter-btn font-semibold text-lg text-gray-800 p-2 rounded-md hover:bg-black/10 max-[760px]:text-sm max-[560px]:text-[10px] " onClick={() => {
                                 let sortedList = [...listOfRestaurants];
-                                sortedList.sort((a, b) => b.data.costForTwo - a.data.costForTwo);
+                                sortedList.sort((a, b) => b.info.costForTwo - a.info.costForTwo);
                                 setFilterListOfRestaurants(sortedList);
                             }}>
                                 Cost : High To Low
