@@ -24,9 +24,11 @@ const Body = () => {
         try {
             const ress = await fetch(import.meta.env.VITE_MAIN_API);
             const pinky = await ress.json();
-            setListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
+            console.log(pinky);
+            console.log(pinky?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+            setListOfRestaurants(pinky?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
             setCarousel(pinky?.data?.cards[0]?.data?.data?.cards);
-            setFilterListOfRestaurants(pinky?.data?.cards[2]?.data?.data?.cards);
+            setFilterListOfRestaurants(pinky?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         }
         catch (err) {
             console.log(err);
@@ -154,8 +156,9 @@ const Body = () => {
                     <div className="res-container flex flex-wrap justify-between items-start w-[81%] gap-y-20 max-[800px]:gap-y-0 max-[730px]:w-full max-[660px]:justify-center">
                         {
                             listOfRestaurants &&
-                            filterListOfRestaurants?.map((restaurant) => (<Link key={restaurant?.data?.id} to={"/restaurants/" + restaurant?.data?.id} ><RestaurantCard resData={restaurant} /></Link>))
+                            filterListOfRestaurants?.map((restaurant) => (<Link key={restaurant?.info?.id} to={"/restaurants/" + restaurant?.info?.id} ><RestaurantCard resData={restaurant?.info} /></Link>))
                         }
+
                     </div>
                 </div>
             </div>

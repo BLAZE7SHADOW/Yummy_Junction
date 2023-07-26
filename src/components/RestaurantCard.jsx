@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 
 import { AiFillStar } from "react-icons/ai";
@@ -7,13 +8,13 @@ import { AiFillStar } from "react-icons/ai";
 const RestaurantCard = (props) => {
   // eslint-disable-next-line react/prop-types
   const { resData } = props;
-
+  console.log(resData);
 
   const {
     cloudinaryImageId, name, avgRating, cuisines, costForTwo, deliveryTime,
 
     // eslint-disable-next-line no-unsafe-optional-chaining, react/prop-types
-  } = resData?.data;
+  } = resData;
 
   const rateColor = avgRating >= 4 ? "bg-green-500" : "bg-orange-500";
 
