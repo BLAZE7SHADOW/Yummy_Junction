@@ -9,16 +9,6 @@ import { useNavigate } from "react-router-dom";
 // import Login from "../pages/Login";
 
 
-
-
-
-
-
-
-
-
-
-
 const Cart = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
