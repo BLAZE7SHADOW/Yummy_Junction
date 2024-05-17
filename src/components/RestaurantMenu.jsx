@@ -22,8 +22,8 @@ const ResturantMenu = () => {
 
             const data = await fetch(web ? import.meta.env.VITE_MENU_API + resId : import.meta.env.VITE_MOBI_MENU_API + resId);
             const fData = await data.json();
-            setMenuData(fData?.data?.cards[0]?.card?.card?.info);
-            setOffers(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
+            setMenuData(fData?.data?.cards[2]?.card?.card?.info);
+            // setOffers(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
 
 
         }
@@ -81,7 +81,7 @@ const ResturantMenu = () => {
                                 <HiOutlineCurrencyRupee className="rupeeicon text-2xl font-thin" />  <span className="costmsg font-bold">{costForTwoMessage}</span>
                             </div>
                         </div>
-                        <div className="offers flex w-full justify-start gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden py-2 my-2 max-[700px]:my-0">
+                        {/* <div className="offers flex w-full justify-start gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden py-2 my-2 max-[700px]:my-0">
                             {
                                 offers?.map((res) => (
                                     <div key={res.info.offerIds} className="singleoffer min-w-[28%] border-[2px] border-black/20  text-sm py-1 px-2 rounded-md flex flex-col justify-center items-start gap-2 max-[700px]:min-w-[50%]">
@@ -99,7 +99,7 @@ const ResturantMenu = () => {
                                 )
                                 )
                             }
-                        </div>
+                        </div> */}
                         <div className="div pt-6 ">
                             {
                                 menuData?.veg ? <div className="text-green-800 font-medium text-sm flex gap-3 justify-start items-center"><FaLeaf /><h1>PURE VEG</h1></div> : ''

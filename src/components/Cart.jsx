@@ -73,8 +73,6 @@ const Cart = () => {
         }
 
 
-
-
         const script = document.createElement("script");
         script.src = "https://checkout.razorpay.com/v1/checkout.js";
         script.async = true;
@@ -102,7 +100,7 @@ const Cart = () => {
                                 <div className="firstresNameDetails flex justify-between w-full p-2">
                                     <div className="left">
                                         <h1 className="name text-lg font-bold font-open">{items[0]?.resName}</h1>
-                                        <p>{items[0]?.cuisines.join(", ")}</p>
+                                        <p>{items[0]?.cuisines?.join(", ")}</p>
 
                                         <p>{items[0]?.areaName + " " + items[0]?.deliveryDistance}</p>
                                     </div>
@@ -183,7 +181,7 @@ const Cart = () => {
                                 </div>
                             </div>
                             <div className="mt-2 sticky bottom-0  w-full max-[800px]:bottom-14" >
-                                <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold rounded-md" onClick={() => makePayment(totalAmount.current + 50)}>
+                                <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold rounded-md" onClick={() => makePayment(totalAmount?.current + 50)}>
                                     <div className="rate flex gap-2 items-center">PROCEED TO PAY <BsArrowRightSquareFill /></div>
                                     <div className="w-28 p-1 ">₹ {(totalAmount?.current + 50)?.toFixed(2)}</div>
                                 </button>

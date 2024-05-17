@@ -21,7 +21,7 @@ const RestaurantCard = (props) => {
   return (
     <div className="card border-[1.5px] border-transparent hover:border-solid hover:border-black/10 hover:shadow-lg p-4 cursor-pointer">
       <div className="res-card w-[16.2rem] min-h-[18rem] flex flex-col justify-start items-start gap-3 ">
-        <img className="res-logo w-full" src={"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" + cloudinaryImageId} />
+        <img className="res-logo w-full" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + cloudinaryImageId} />
         <div className="name-details  flex flex-col justify-between items-start gap-1">
           <h3 className="resname  font-semibold ">{name}</h3>
           <h6 className="cuisines text-slate-600 text-[0.79rem] line-clamp-2">{cuisines.join(", ")}</h6>

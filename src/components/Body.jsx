@@ -19,16 +19,13 @@ const Body = () => {
 
 
 
-
     const getData = async () => {
         try {
             const ress = await fetch(import.meta.env.VITE_MAIN_API);
             const pinky = await ress.json();
-            console.log(pinky);
-            console.log(pinky?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-            setListOfRestaurants(pinky?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-            setCarousel(pinky?.data?.cards[0]?.data?.data?.cards);
-            setFilterListOfRestaurants(pinky?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+            setListOfRestaurants(pinky?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+            // setCarousel(pinky?.data?.cards[0]?.data?.data?.cards);
+            setFilterListOfRestaurants(pinky?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         }
         catch (err) {
             console.log(err);
@@ -57,7 +54,7 @@ const Body = () => {
         listOfRestaurants ? (
 
             <div className="parent w-full lg:mb-5">
-                {carousel &&
+                {/* {carousel &&
                     <div className="carousel  w-full flex justify-center bg-black p-[22px] ">
                         <div className="swiper w-[82%] m-4 p-5 bg-black max-[760px]:w-full max-[760px]:m-0  ">
 
@@ -93,7 +90,7 @@ const Body = () => {
 
                         </div>
                     </div>
-                }
+                } */}
                 <div className="body w-full flex flex-col justify-center items-center gap-8">
                     <div className="filters w-[80%] flex justify-center items-center mt-4 gap-20 pr-5 p-2 max-[760px]:flex-col max-[760px]:w-full max-[760px]:gap-4 max-[760px]:pr-2 ">
                         <div className="Search w-[30%]  flex justify-center  sm:hover:bg-black/10 ">
