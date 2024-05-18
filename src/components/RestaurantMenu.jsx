@@ -8,12 +8,39 @@ import { FaLeaf } from "react-icons/fa";
 // import { initialValue, reducerFunction } from "./reducer/reducer";
 import ResMenu from "./ResMenu";
 import ShimmerMenu from "./ShimmerMenu";
+import axios from 'axios';
 
 const ResturantMenu = () => {
     const [web, setWeb] = useState(true);
     const [menuData, setMenuData] = useState(null);
     const [offers, setOffers] = useState(null);
     const { resId } = useParams();
+
+
+
+    // const fetchMenu = async () => {
+    //     try {
+    //         const baseUrl = import.meta.env.VITE_MENU_API;
+    //         // const baseUrl = web ? import.meta.env.VITE_MENU_API : import.meta.env.VITE_MOBI_MENU_API;
+    //         if (!baseUrl) {
+    //             throw new Error('VITE_MENU_API or VITE_MOBI_MENU_API is not defined');
+    //         }
+    //         const apiUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`${baseUrl}${resId}`)}`;
+    //         const response = await fetch(apiUrl);
+
+    //         if (!response.ok) {
+    //             throw new Error(`Network response was not ok: ${response.statusText}`);
+    //         }
+
+    //         const data = await response.json();
+    //         const jsonString = data.contents;
+    //         const parsedData = JSON.parse(jsonString);
+    //         setMenuData(parsedData?.data?.cards[2]?.card?.card?.info);
+    //         setOffers(parsedData.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers);
+    //     } catch (err) {
+    //         console.error('Error fetching data:', err);
+    //     }
+    // };
 
 
 
@@ -24,22 +51,21 @@ const ResturantMenu = () => {
             if (!baseUrl) {
                 throw new Error('VITE_MENU_API or VITE_MOBI_MENU_API is not defined');
             }
-            const apiUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`${baseUrl}${resId}`)}`;
-            const response = await fetch(apiUrl);
+            const apiUrl = `${baseUrl}${resId}`;
+            const response = await axios.get(apiUrl);
 
-            if (!response.ok) {
+            if (response.status !== 200) {
                 throw new Error(`Network response was not ok: ${response.statusText}`);
             }
 
-            const data = await response.json();
-            const jsonString = data.contents;
-            const parsedData = JSON.parse(jsonString);
-            setMenuData(parsedData?.data?.cards[2]?.card?.card?.info);
-            setOffers(parsedData.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers);
+            const data = response.data;
+            setMenuData(data?.data?.cards[2]?.card?.card?.info);
+            setOffers(data?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers);
         } catch (err) {
             console.error('Error fetching data:', err);
         }
     };
+
 
 
 

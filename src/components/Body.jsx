@@ -18,26 +18,6 @@ const Body = () => {
     const [filterListOfRestaurants, setFilterListOfRestaurants] = useState(null);
 
 
-    // const getData = async () => {
-    //     try {
-    //         const apiUrl = import.meta.env.VITE_MAIN_API;
-    //         if (!apiUrl) {
-    //             throw new Error('VITE_MAIN_API is not defined');
-    //         }
-    //         const ress = await fetch(apiUrl);
-    //         const data = await ress.json();
-    //         const jsonString = data.contents;
-    //         const pinky = JSON.parse(jsonString);
-
-    //         setListOfRestaurants(pinky?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    //         // setCarousel(pinky?.data?.cards[0]?.data?.data?.cards);
-    //         setFilterListOfRestaurants(pinky?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // };
-
-
     const getData = async () => {
         try {
             const apiUrl = import.meta.env.VITE_MAIN_API;
