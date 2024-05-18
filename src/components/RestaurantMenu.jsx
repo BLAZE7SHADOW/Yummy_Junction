@@ -19,18 +19,29 @@ const ResturantMenu = () => {
 
     const fetchMenu = async () => {
         try {
+            const baseUrl = import.meta.env.VITE_MENU_API;
+            // const baseUrl = web ? import.meta.env.VITE_MENU_API : import.meta.env.VITE_MOBI_MENU_API;
+            if (!baseUrl) {
+                throw new Error('VITE_MENU_API or VITE_MOBI_MENU_API is not defined');
+            }
+            const apiUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`${baseUrl}${resId}`)}`;
+            const response = await fetch(apiUrl);
 
-            const data = await fetch(web ? import.meta.env.VITE_MENU_API + resId : import.meta.env.VITE_MOBI_MENU_API + resId);
-            const fData = await data.json();
-            setMenuData(fData?.data?.cards[2]?.card?.card?.info);
-            // setOffers(fData.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers);
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.statusText}`);
+            }
 
-
+            const data = await response.json();
+            const jsonString = data.contents;
+            const parsedData = JSON.parse(jsonString);
+            setMenuData(parsedData?.data?.cards[2]?.card?.card?.info);
+            setOffers(parsedData.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers);
+        } catch (err) {
+            console.error('Error fetching data:', err);
         }
-        catch (err) {
-            console.log(err);
-        }
-    }
+    };
+
+
 
     useEffect(() => {
         fetchMenu();
@@ -47,13 +58,13 @@ const ResturantMenu = () => {
 
 
 
-    if (menuData === null) return <ShimmerMenu className="" />
+    if (menuData === null || undefined) return <ShimmerMenu className="" />
 
-    const { name, cuisines, costForTwoMessage, areaName, avgRatingString, totalRatingsString } = menuData;
-    const { lastMileTravelString, deliveryTime } = menuData.sla;
+    const { name, cuisines, costForTwoMessage, areaName, avgRatingString, totalRatingsString } = menuData ?? {};
+    const { lastMileTravelString, deliveryTime } = menuData ?? menuData.sla;
 
     return (
-        <>
+        <> {menuData &&
             <div className="main w-full flex flex-col justify-center items-center ">
                 <div className="mainBodyRestaurantMenu flex flex-col items-center  w-[51%] max-[800px]:w-full max-[800px]:px-3 ">
                     <div className="firstresNameDetails flex justify-between w-full p-2">
@@ -81,7 +92,7 @@ const ResturantMenu = () => {
                                 <HiOutlineCurrencyRupee className="rupeeicon text-2xl font-thin" />  <span className="costmsg font-bold">{costForTwoMessage}</span>
                             </div>
                         </div>
-                        {/* <div className="offers flex w-full justify-start gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden py-2 my-2 max-[700px]:my-0">
+                        <div className="offers flex w-full justify-start gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden py-2 my-2 max-[700px]:my-0">
                             {
                                 offers?.map((res) => (
                                     <div key={res.info.offerIds} className="singleoffer min-w-[28%] border-[2px] border-black/20  text-sm py-1 px-2 rounded-md flex flex-col justify-center items-start gap-2 max-[700px]:min-w-[50%]">
@@ -99,7 +110,7 @@ const ResturantMenu = () => {
                                 )
                                 )
                             }
-                        </div> */}
+                        </div>
                         <div className="div pt-6 ">
                             {
                                 menuData?.veg ? <div className="text-green-800 font-medium text-sm flex gap-3 justify-start items-center"><FaLeaf /><h1>PURE VEG</h1></div> : ''
@@ -123,7 +134,7 @@ const ResturantMenu = () => {
 
 
 
-        </>
+        } </>
     )
 }
 

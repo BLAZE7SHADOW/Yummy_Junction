@@ -29,7 +29,6 @@ const Body = () => {
             const jsonString = data.contents;
             const pinky = JSON.parse(jsonString);
 
-            console.log(pinky, "pinky");
             setListOfRestaurants(pinky?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
             // setCarousel(pinky?.data?.cards[0]?.data?.data?.cards);
             setFilterListOfRestaurants(pinky?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);

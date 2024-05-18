@@ -29,7 +29,6 @@ const Cart = () => {
         console.log("Payment Successful:", payment);
         dispatch(emptyItems());
         navigate('/success');
-        console.log("pink")
     };
 
     const handlePaymentError = (error) => {

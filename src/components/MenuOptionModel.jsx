@@ -208,10 +208,6 @@ const MenuOptionModel = ({ setMenuModel, variantData, fData }) => {
                     <button className="flex bg-[rgb(103,178,80)] w-full p-3 justify-between items-center text-white text-sm font-bold" onClick={() => addVariantHandler()}>
                         <div className="rate">
                             <span className="px-2">Total</span>
-                            {/* {console.log("gggg")}
-                            {console.log(total)}
-                            {console.log("hhhh")}
-                            {console.log(radioPrice)} */}
                             <span className="">Rs {total ? (total + radioPrice)?.toFixed(2) : radioPrice}</span>
                         </div>
                         <div>ADD ITEM</div>

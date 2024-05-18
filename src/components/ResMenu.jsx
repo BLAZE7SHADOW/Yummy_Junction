@@ -18,8 +18,6 @@ const ResMenu = () => {
     const [activeItem, setActiveItem] = useState(null);
     const [variantData, setVariantData] = useState(null);
     const fData = useApiData();
-    // const showAccordians = fData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
-    // console.log(fData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards, "ll")
     const showAccordians = web ? fData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards : fData?.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
     const dispatch = useDispatch();
 
