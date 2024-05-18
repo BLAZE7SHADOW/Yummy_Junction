@@ -18,19 +18,30 @@ const Body = () => {
     const [filterListOfRestaurants, setFilterListOfRestaurants] = useState(null);
 
 
-
     const getData = async () => {
         try {
-            const ress = await fetch(import.meta.env.VITE_MAIN_API);
-            const pinky = await ress.json();
+            const apiUrl = import.meta.env.VITE_MAIN_API;
+            if (!apiUrl) {
+                throw new Error('VITE_MAIN_API is not defined');
+            }
+            const ress = await fetch(apiUrl);
+            const data = await ress.json();
+            const jsonString = data.contents;
+            const pinky = JSON.parse(jsonString);
+
+            console.log(pinky, "pinky");
             setListOfRestaurants(pinky?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
             // setCarousel(pinky?.data?.cards[0]?.data?.data?.cards);
             setFilterListOfRestaurants(pinky?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        }
-        catch (err) {
+        } catch (err) {
             console.log(err);
         }
-    }
+    };
+
+
+
+
+
 
     function filterData(searchText, listOfRestaurants) {
         const filterData = listOfRestaurants?.filter((re) => re?.info?.name?.toUpperCase()?.includes(searchText?.toUpperCase()));
